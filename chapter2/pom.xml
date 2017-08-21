@@ -73,6 +73,12 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${test.junit.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -117,6 +123,8 @@
         <hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
         <jetty.version>8.1.8.v20121106</jetty.version>
         <slf4j.version>1.7.5</slf4j.version>
+
         <testng.version>6.8.7</testng.version>
+        <test.junit.version>4.12</test.junit.version>
     </properties>
 </project>
