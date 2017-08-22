@@ -11,6 +11,24 @@
     <description>Spring4.x第二章实例</description>
     <packaging>war</packaging>
 
+    <properties>
+        <file.encoding>UTF-8</file.encoding>
+        <spring.version>4.2.9.RELEASE</spring.version>
+        <mysql.version>5.1.29</mysql.version>
+        <servlet.version>3.1.0</servlet.version>
+        <servlet.jstl.version>1.2</servlet.jstl.version>
+
+        <aspectj.version>1.8.1</aspectj.version>
+        <commons-codec.version>1.9</commons-codec.version>
+        <commons-dbcp.version>1.4</commons-dbcp.version>
+        <hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
+        <jetty.version>8.1.8.v20121106</jetty.version>
+        <slf4j.version>1.7.5</slf4j.version>
+
+        <testng.version>6.8.7</testng.version>
+        <test.junit.version>4.12</test.junit.version>
+    </properties>
+
     <dependencies>
         <!-- spring 依赖-->
         <dependency>
@@ -79,12 +97,18 @@
             <version>${test.junit.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${servlet.jstl.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <!-- jetty插件 -->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.25</version>
@@ -97,6 +121,18 @@
                     </connectors>
                     <contextPath>/bbs</contextPath>
                     <scanIntervalSeconds>0</scanIntervalSeconds>
+                </configuration>
+            </plugin>-->
+            <!--server-->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.6.v20170531</version>
+                <configuration>
+                    <httpConnector>
+                        <port>8080</port>
+                    </httpConnector>
+                    <scanIntervalSeconds>2</scanIntervalSeconds>
                 </configuration>
             </plugin>
 
@@ -112,19 +148,5 @@
         </plugins>
     </build>
 
-    <properties>
-        <file.encoding>UTF-8</file.encoding>
-        <spring.version>4.2.2.RELEASE</spring.version>
-        <mysql.version>5.1.29</mysql.version>
-        <servlet.version>3.1.0</servlet.version>
-        <aspectj.version>1.8.1</aspectj.version>
-        <commons-codec.version>1.9</commons-codec.version>
-        <commons-dbcp.version>1.4</commons-dbcp.version>
-        <hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
-        <jetty.version>8.1.8.v20121106</jetty.version>
-        <slf4j.version>1.7.5</slf4j.version>
 
-        <testng.version>6.8.7</testng.version>
-        <test.junit.version>4.12</test.junit.version>
-    </properties>
 </project>
