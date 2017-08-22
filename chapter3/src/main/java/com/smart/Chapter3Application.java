@@ -16,6 +16,6 @@ public class Chapter3Application extends SpringBootServletInitializer{
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(this.getClass());
+        return builder.sources(Chapter3Application.class);
     }
 }
