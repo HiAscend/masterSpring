@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class UserService {
+
     private UserDao userDao;
     private LoginLogDao loginLogDao;
 
@@ -39,12 +40,8 @@ public class UserService {
     }
 
     @Autowired
-    public void setUserDao(UserDao userDao) {
+    public UserService(UserDao userDao, LoginLogDao loginLogDao) {
         this.userDao = userDao;
-    }
-
-    @Autowired
-    public void setLoginLogDao(LoginLogDao loginLogDao) {
         this.loginLogDao = loginLogDao;
     }
 }

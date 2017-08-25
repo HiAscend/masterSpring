@@ -1,0 +1,8 @@
+记录本书发现的疑惑点：
+p45: 最后一行“...下一节将通过Ant工具...”，其中 Ant-->Jetty ?
+p53: 代码清单3-2 class 类名 BbsDaemon-->BbsDemo ?
+p59: 3.4.1 第一句"...pom.xml文件中导入spring-boot-starter-data-jdbc依赖..."，其中"data"是多余的
+p85: 图4-5右上角，AbstractResource实现了WritableResource,但是并没有画出对应的线段
+p95: 图4-8左上角，MessageSource并不是继承自ApplicationEventPublisher
+
+
