@@ -1,10 +1,11 @@
 package com.smart.chapter4.resource;
 
-import org.junit.Assert;
-import org.junit.Test;
+
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 
