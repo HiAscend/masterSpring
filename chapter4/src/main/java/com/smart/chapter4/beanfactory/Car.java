@@ -1,4 +1,4 @@
-package com.smart.chapter4.context;
+package com.smart.chapter4.beanfactory;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
