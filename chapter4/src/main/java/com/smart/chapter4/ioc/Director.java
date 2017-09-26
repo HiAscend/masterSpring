@@ -1,5 +1,8 @@
 package com.smart.chapter4.ioc;
 
+/**
+ * Director
+ */
 public class Director {
     public void direct() {
         GeLi geli = new LiuDeHua();
