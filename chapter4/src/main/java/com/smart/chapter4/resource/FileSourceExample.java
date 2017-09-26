@@ -1,10 +1,14 @@
 package com.smart.chapter4.resource;
 
 import org.springframework.core.io.*;
-import org.springframework.web.context.support.ServletContextResource;
+import org.springframework.core.io.support.EncodedResource;
+import org.springframework.util.FileCopyUtils;
 import org.testng.annotations.Test;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 
 public class FileSourceExample {
@@ -67,6 +71,14 @@ public class FileSourceExample {
     }
 
     @Test
+    public void testClassPathResource2() throws IOException {
+        Resource resource = new ClassPathResource("conf/file1.txt");
+        EncodedResource encodedResource = new EncodedResource(resource);
+        String string = FileCopyUtils.copyToString(encodedResource.getReader());
+        System.out.println("string = " + string);
+    }
+
+    @Test
     public void testWritableResource() throws IOException {
         WritableResource resource = new PathResource(filePath);
         OutputStream outputStream = resource.getOutputStream();
@@ -84,6 +96,19 @@ public class FileSourceExample {
     @Test
     public void testServletContextResource() {
 //        new ServletContextResource()
+    }
+
+    @Test
+    public void testUrlResource() throws IOException {
+        UrlResource resource = new UrlResource("https://crownbet.com.au/api/home/next-jumps/1,3,2");
+        InputStream is = resource.getInputStream();
+        StringBuilder stringBuilder = new StringBuilder();
+        byte[] arr = new byte[1024];
+        while (is.read(arr) != -1) {
+            stringBuilder.append(new java.lang.String(arr, 0, arr.length));
+        }
+        System.out.println(stringBuilder.toString());
+        is.close();
     }
 
     public static void main(String[] args) {
