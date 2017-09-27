@@ -15,7 +15,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if (Objects.equals(beanName, "car")) {
             Car car = (Car) bean;
-            if (Objects.equals(car, null)) {
+            if (Objects.equals(car.getColor(), null)) {
                 System.out.println("MyBeanPostProcessor.postProcessBeforeInitialization，颜色为空，设置为黑色");
                 car.setColor("黑色");
             }

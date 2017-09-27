@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="car" class="com.smart.chapter4.beanfactory.Car" init-method="myInit" destroy-method="myDestroy">
+    <bean id="car" class="com.smart.chapter4.beanfactory.Car" init-method="myInit" destroy-method="myDestroy" scope="singleton">
         <property name="brand" value="红旗CA72"/>
         <property name="maxSpeed" value="270"/>
     </bean>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--1、这个brand属性的值将被工厂后处理器更改掉-->
+    <bean id="car" class="com.smart.chapter4.beanfactory.Car" init-method="myInit" destroy-method="myDestroy"
+          scope="singleton">
+        <property name="brand" value="红旗CA72"/>
+        <property name="maxSpeed" value="270"/>
+    </bean>
+    <!--3、Bean后处理器-->
+    <bean id="myBeanPostProcessor" class="com.smart.chapter4.beanfactory.MyBeanPostProcessor"/>
+    <!--2、工厂后处理器-->
+    <bean id="myBeanFactoryPostProcessor" class="com.smart.chapter4.context.MyBeanFactoryPostProcessor"/>
+</beans>

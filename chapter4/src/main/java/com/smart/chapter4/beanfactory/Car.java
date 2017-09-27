@@ -72,6 +72,7 @@ public class Car implements BeanFactoryAware, BeanNameAware, InitializingBean, D
     }
 
     public void setColor(String color) {
+        System.out.println("Car.setColor");
         this.color = color;
     }
 
@@ -80,6 +81,7 @@ public class Car implements BeanFactoryAware, BeanNameAware, InitializingBean, D
     }
 
     public void setMaxSpeed(int maxSpeed) {
+        System.out.println("Car.setMaxSpeed");
         this.maxSpeed = maxSpeed;
     }
 }
