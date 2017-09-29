@@ -6,7 +6,7 @@
     
     <!--car-->
     <bean id="car" class="com.smart.chapter4.reflect.Car">
-        <property name="brand" value="红旗CA72"/>
+        <property name="brand" value="红旗&amp;&amp;CA72"/>
         <property name="color" value="黑色"/>
         <property name="maxSpeed" value="200"/>
     </bean>
