@@ -9,6 +9,7 @@
         <property name="brand" value="红旗&amp;&amp;CA72"/>
         <property name="color" value="黑色"/>
         <property name="maxSpeed" value="200"/>
+
     </bean>
 
     <!--<bean id="customAutowireConfigurer"

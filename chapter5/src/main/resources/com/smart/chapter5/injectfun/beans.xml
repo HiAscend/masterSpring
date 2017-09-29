@@ -9,4 +9,10 @@
     <bean id="magicBoss" class="com.smart.chapter5.injectfun.MagicBoss">
         <lookup-method name="getCar" bean="com.smart.chapter5.injectfun.Car"/>
     </bean>
+
+    <!--使用boss2的MethodReplacer接口方法替换替换Bean的getCar()方法-->
+    <bean id="com.smart.chapter5.injectfun.Boss1" class="com.smart.chapter5.injectfun.Boss1">
+        <replaced-method name="getCar" replacer="com.smart.chapter5.injectfun.Boss2"/>
+    </bean>
+    <bean id="com.smart.chapter5.injectfun.Boss2" class="com.smart.chapter5.injectfun.Boss2"/>
 </beans>

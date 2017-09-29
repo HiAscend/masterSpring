@@ -8,6 +8,7 @@ public class Car {
     private String brand;
     private String color;
     private int maxSpeed;
+    private String iDCode;
 
     public Car() {
     }
@@ -19,7 +20,7 @@ public class Car {
     }
 
     public void introduce() {
-        System.out.println("brand:" + brand + ";color:" + color + ";maxSpeed:" + maxSpeed);
+        System.out.println("brand:" + brand + ";color:" + color + ";maxSpeed:" + maxSpeed+";iDCode:" + iDCode);
     }
 
     public String getBrand() {
@@ -44,5 +45,13 @@ public class Car {
 
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
+    }
+
+    public String getiDCode() {
+        return iDCode;
+    }
+
+    public void setiDCode(String iDCode) {
+        this.iDCode = iDCode;
     }
 }

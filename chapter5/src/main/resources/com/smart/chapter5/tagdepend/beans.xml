@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--定义抽象Bean-->
+    <bean id="abstractCar" class="com.smart.chapter5.tagdepend.Car" abstract="true"
+          p:brand="红旗CA72" p:price="2000.00" p:color="黑色"/>
+    <!--继承abstractBean-->
+    <bean id="car9" parent="abstractCar" p:color="红色"/>
+    <bean id="car10" parent="abstractCar" p:color="白色"/>
+
+    <!--bean 依赖-->
+    <bean id="sysInit" class="com.smart.chapter5.tagdepend.SysInit"/>
+    <bean id="cacheManager" class="com.smart.chapter5.tagdepend.CacheManager" depends-on="sysInit"/>
+
+    <!--引用-->
+    <bean id="car7" class="com.smart.chapter5.tagdepend.Car"/>
+    <bean id="boss4" class="com.smart.chapter5.tagdepend.Boss"
+          p:carId="car7" scope="prototype"/>
+</beans>
