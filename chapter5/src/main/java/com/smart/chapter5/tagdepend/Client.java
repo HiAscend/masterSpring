@@ -35,5 +35,8 @@ public class Client {
     }
 
     @Test
-    public void
+    public void testQuote() {
+        Boss boss = beanFactory.getBean("boss4", Boss.class);
+        System.out.println(boss.toString());
+    }
 }
