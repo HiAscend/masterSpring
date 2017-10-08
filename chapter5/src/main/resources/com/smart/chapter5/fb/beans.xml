@@ -15,4 +15,8 @@
         <replaced-method name="getCar" replacer="com.smart.chapter5.injectfun.Boss2"/>
     </bean>
     <bean id="com.smart.chapter5.injectfun.Boss2" class="com.smart.chapter5.injectfun.Boss2"/>
+
+    <!--FactoryBean-->
+    <bean id="car" class="com.smart.chapter5.fb.CarFactoryBean" init-method="init"
+    p:carInfo="红旗CA72,200,20000.00"/>
 </beans>

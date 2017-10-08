@@ -12,6 +12,7 @@
     <node x="585.9543650793651" y="320.0">org.springframework.beans.factory.config.ConfigurableListableBeanFactory</node>
     <node x="199.0" y="320.0">org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory</node>
     <node x="270.17658730158723" y="480.0">org.springframework.beans.factory.xml.XmlBeanFactory</node>
+    <node x="-20.0" y="17.0">org.springframework.beans.factory.FactoryBean</node>
     <node x="388.204365079365" y="240.0">org.springframework.beans.factory.support.AbstractBeanFactory</node>
     <node x="698.7777777777777" y="0.0">org.springframework.beans.factory.BeanFactory</node>
     <node x="238.67658730158723" y="400.0">org.springframework.beans.factory.support.DefaultListableBeanFactory</node>
@@ -102,17 +103,17 @@
       <point x="988.8293650793651" y="300.0" />
       <point x="40.75" y="15.0" />
     </edge>
-    <edge source="org.springframework.beans.factory.support.DefaultListableBeanFactory" target="org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory">
-      <point x="0.0" y="-15.0" />
-      <point x="340.67658730158723" y="375.0" />
-      <point x="332.0" y="375.0" />
-      <point x="0.0" y="15.0" />
-    </edge>
     <edge source="org.springframework.beans.factory.support.AbstractBeanFactory" target="org.springframework.beans.factory.config.ConfigurableBeanFactory">
       <point x="41.75000000000006" y="-15.0" />
       <point x="513.4543650793651" y="215.0" />
       <point x="607.9543650793651" y="215.0" />
       <point x="-48.5" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.DefaultListableBeanFactory" target="org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory">
+      <point x="0.0" y="-15.0" />
+      <point x="340.67658730158723" y="375.0" />
+      <point x="332.0" y="375.0" />
+      <point x="0.0" y="15.0" />
     </edge>
     <edge source="org.springframework.beans.factory.config.ConfigurableBeanFactory" target="org.springframework.beans.factory.HierarchicalBeanFactory">
       <point x="48.5" y="-15.0" />
@@ -131,8 +132,10 @@
       <point x="0.0" y="15.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="515.0" y="255.0" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="1.0" x="515.5" y="333.5" />
+  <SelectedNodes>
+    <node>org.springframework.beans.factory.FactoryBean</node>
+  </SelectedNodes>
   <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

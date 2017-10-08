@@ -10,11 +10,13 @@ public class CarFactoryBean implements FactoryBean<Car> {
         return carInfo;
     }
 
+    // 接收逗号分隔的属性设置信息
     public void setCarInfo(String carInfo) {
         this.carInfo = carInfo;
     }
 
     public Car getObject() throws Exception {
+        System.out.println("CarFactoryBean.getObject");
         Car car = new Car();
         String[] infos = carInfo.split(",");
         car.setBrand(infos[0]);
@@ -29,5 +31,9 @@ public class CarFactoryBean implements FactoryBean<Car> {
 
     public boolean isSingleton() {
         return false;
+    }
+
+    public void init() {
+        System.out.println("CarFactoryBean.init");
     }
 }

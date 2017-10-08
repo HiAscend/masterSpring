@@ -1,9 +1,18 @@
-package com.smart.chapter5.fb;
+package com.smart.chapter5.anno;
 
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
+@Component
 public class Car {
     private int maxSpeed;
     private String brand;
     private double price;
+
+
+    public static String HONG_QI = "红旗";
 
     public String getBrand() {
         return brand;
