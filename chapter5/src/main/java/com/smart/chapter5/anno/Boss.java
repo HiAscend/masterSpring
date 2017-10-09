@@ -1,5 +1,8 @@
 package com.smart.chapter5.anno;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
@@ -8,6 +11,7 @@ import javax.annotation.Resource;
  * Boss
  * Created by zziaa on 2017/10/08.
  */
+@Component
 public class Boss {
     private Car car;
 
@@ -15,7 +19,7 @@ public class Boss {
         System.out.println("Boss.Boss");
     }
 
-    @Resource(name = "car")
+    @Autowired
     public void setCar(Car car) {
         System.out.println("Boss.setCar");
         this.car = car;
