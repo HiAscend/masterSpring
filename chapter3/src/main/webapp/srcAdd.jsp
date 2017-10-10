@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=GBK"%>
+<%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.security.*,java.net.*,java.io.*"%>
 <%!
   public static URL getClassLocation(final Class cls) {
@@ -31,7 +31,7 @@
     }
     if (result == null) {
       // Try to find 'cls' definition as a resource; this is not
-      // document£®d to be legal, but Sun's implementations seem to         //allow this:
+      // documentï¼d to be legal, but Sun's implementations seem to         //allow this:
       final ClassLoader clsLoader = cls.getClassLoader();
       result = clsLoader != null ?
           clsLoader.getResource(clsAsResource) :
@@ -45,7 +45,7 @@
 <title>srcAdd.jar</title>
 </head>
 <body bgcolor="#ffffff">
-  Ê¹ÓÃ·½·¨£¬className²ÎÊıÎªÀàµÄÈ«Ãû£¬²»ĞèÒª.classºó×º£¬Èç
+  ä½¿ç”¨æ–¹æ³•ï¼ŒclassNameå‚æ•°ä¸ºç±»çš„å…¨åï¼Œä¸éœ€è¦.classåç¼€ï¼Œå¦‚
   srcAdd.jsp?className=java.net.URL
 <%
 try
@@ -56,17 +56,17 @@ try
 
   classLocation =  ""+getClassLocation(Class.forName(className));
   if (error == null) {
-    out.print("Àà" + className + "ÊµÀıµÄÎïÀíÎÄ¼şÎ»ÓÚ£º");
+    out.print("ç±»" + className + "å®ä¾‹çš„ç‰©ç†æ–‡ä»¶ä½äºï¼š");
     out.print("<hr>");
     out.print(classLocation);
   }
   else {
-    out.print("Àà" + className + "Ã»ÓĞ¶ÔÓ¦µÄÎïÀíÎÄ¼ş¡£<br>");
-    out.print("´íÎó£º" + error);
+    out.print("ç±»" + className + "æ²¡æœ‰å¯¹åº”çš„ç‰©ç†æ–‡ä»¶ã€‚<br>");
+    out.print("é”™è¯¯ï¼š" + error);
   }
 }catch(Exception e)
 {
-  out.print("Òì³£¡£"+e.getMessage());
+  out.print("å¼‚å¸¸ã€‚"+e.getMessage());
 }
 %>
 </body>
