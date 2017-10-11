@@ -21,6 +21,9 @@ public class LoginLogDao {
                 loginLog.getUserId(),
                 loginLog.getIp(),
                 loginLog.getLoginDate());
+
+
+
     }
 
     @Autowired
