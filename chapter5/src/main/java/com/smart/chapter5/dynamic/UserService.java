@@ -10,4 +10,8 @@ public class UserService {
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
+
+    public void printHello() {
+        System.out.println("UserService.printHello");
+    }
 }
