@@ -4,7 +4,9 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**
  * UserServiceNamespceHandler
- * Created by zziaa on 2017/10/12.
+ *
+ * @author zziaa
+ * @date 2017/10/12
  */
 public class UserServiceNamespaceHandler extends NamespaceHandlerSupport {
     @Override

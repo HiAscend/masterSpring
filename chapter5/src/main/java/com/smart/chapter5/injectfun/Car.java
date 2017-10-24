@@ -1,5 +1,8 @@
 package com.smart.chapter5.injectfun;
 
+/**
+ * @author Administrator
+ */
 public class Car {
     private String brand;
     private String corp;

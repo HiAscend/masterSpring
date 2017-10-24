@@ -1,5 +1,8 @@
 package com.smart.chapter5.fb;
 
+/**
+ * @author Administrator
+ */
 public class Boss {
     private String name;
     private Car car;
