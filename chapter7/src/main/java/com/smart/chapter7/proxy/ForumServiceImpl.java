@@ -1,5 +1,7 @@
 package com.smart.chapter7.proxy;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * ForumServiceImpl
  *
@@ -9,11 +11,29 @@ package com.smart.chapter7.proxy;
 public class ForumServiceImpl implements ForumService {
     @Override
     public void removeTopic(int topicId) {
-
+        // 1、开始对该方法进行性能监视
+        PerformanceMonitor.begin("com.smart.chapter7.proxy.ForumServiceImpl.removeTopic");
+        System.out.println("模拟删除topic记录：" + topicId);
+        try {
+            TimeUnit.MICROSECONDS.sleep(20);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // 2、结束对该方法的性能监视
+        PerformanceMonitor.end();
     }
 
     @Override
     public void removeForum(int forumId) {
-
+        // 1、开始对该方法进行性能监视
+        PerformanceMonitor.begin("com.smart.chapter7.proxy.ForumServiceImpl.removeForum");
+        System.out.println("模拟删除Forum记录：" + forumId);
+        try {
+            TimeUnit.MICROSECONDS.sleep(40);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // 2、结束对该方法的性能监视
+        PerformanceMonitor.end();
     }
 }
