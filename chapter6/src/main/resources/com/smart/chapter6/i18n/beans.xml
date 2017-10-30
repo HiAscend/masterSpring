@@ -9,7 +9,7 @@
             </list>
         </property>
     </bean>
-
+    <!--定时刷新的MessageSource-->
     <bean id="reloadableResourceBundleMessage" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
             <list>
@@ -18,5 +18,13 @@
         </property>
         <!--刷新资源文件的周期，单位：秒，真实环境至少大于一分钟-->
         <property name="cacheSeconds" value="5"/>
+    </bean>
+    <!--注册资源Bean，其Bean名只能为messageSource，通过ApplicationContext访问国际化资源-->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>com/smart/chapter6/i18n/fmt_resource</value>
+            </list>
+        </property>
     </bean>
 </beans>

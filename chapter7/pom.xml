@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.smart.chapter6</groupId>
-    <artifactId>chapter6</artifactId>
+    <groupId>com.smart.chapter7</groupId>
+    <artifactId>chapter7</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>chapter6</name>
+    <name>chapter7</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -20,80 +20,63 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
 
-        <!--spring-->
-        <spring.version>4.2.9.RELEASE</spring.version>
+        <!--core-->
+        <core.spring.version>4.2.9.RELEASE</core.spring.version>
         <!--db-->
         <mysql-connector-java.version>5.1.39</mysql-connector-java.version>
-        <db.tomcat-jdbc.version>8.5.23</db.tomcat-jdbc.version>
-        <!--cglib-->
-        <cglib.version>3.2.5</cglib.version>
-        <!--groovy-->
-        <groovy.version>2.3.11</groovy.version>
         <!--util-->
         <util.commons-lang3.version>3.6</util.commons-lang3.version>
+        <util.commons-codec.version>1.11</util.commons-codec.version>
+        <util.cglib.version>3.2.5</util.cglib.version>
         <!--log-->
         <log.slf4j.version>1.7.25</log.slf4j.version>
         <log.log4j2.version>2.8.2</log.log4j2.version>
+        <!--test-->
+        <test.org.testng.version>6.1.1</test.org.testng.version>
     </properties>
 
     <dependencies>
-        <!-- spring 依赖-->
+        <!-- core start-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>${spring.version}</version>
+            <version>${core.spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
+            <version>${core.spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>${spring.version}</version>
+            <version>${core.spring.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <!--spring end-->
-        <!--mysql驱动 相关 start-->
-        <!--http://stackoverflow.com/questions/3320400/to-prevent-a-memory-leak-the-jdbc-driver-has-been-forcibly-unregistered/6576394#6576394-->
+        <!--core end-->
+        <!--db start-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector-java.version}</version>
-            <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-            <version>${db.tomcat-jdbc.version}</version>
-        </dependency>
-
-        <!--mysql驱动 相关 end-->
-        <!--cglib start-->
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>${cglib.version}</version>
-        </dependency>
-        <!--cglib end-->
-        <!--groovy start-->
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>${groovy.version}</version>
-        </dependency>
-        <!--groovy end-->
+        <!--db end-->
         <!--util start-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${util.commons-lang3.version}</version>
         </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${util.commons-codec.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${util.cglib.version}</version>
+        </dependency>
+
         <!--util end-->
         <!--log start-->
         <dependency>
@@ -118,20 +101,25 @@
             <version>${log.slf4j.version}</version>
         </dependency>
         <!--log end-->
-
-
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <!--test start-->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.11</version>
+            <version>${test.org.testng.version}</version>
             <!--<scope>test</scope>-->
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${core.spring.version}</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+        <!--test end-->
     </dependencies>
 
     <build>
-        <finalName>chapter6</finalName>
+        <finalName>chapter7</finalName>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
         <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
 
