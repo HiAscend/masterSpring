@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="greetingBeforeAdvice" class="com.smart.chapter7.advice.GreetingBeforeAdvice"/>
+    <bean id="greetingAfterAdvice" class="com.smart.chapter7.advice.GreetingAfterAdvice"/>
+    <bean id="naiveWaiter" class="com.smart.chapter7.advice.NaiveWaiter"/>
+    <bean id="waiter" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--<property name="proxyInterfaces" value="com.smart.chapter7.advice.Waiter"/>-->
+        <property name="interceptorNames">
+            <list>
+                <idref bean="greetingBeforeAdvice"/>
+                <idref bean="greetingAfterAdvice"/>
+            </list>
+        </property>
+        <property name="target" ref="naiveWaiter"/>
+    </bean>
+
+
+
+</beans>
