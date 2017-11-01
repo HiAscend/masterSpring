@@ -41,4 +41,12 @@ public class BeforeAdviceTest {
         Waiter waiter = context.getBean("waiter", Waiter.class);
         waiter.greetTo("katherine");
     }
+
+    @Test
+    public void testBefore3() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("/advice/beans.xml");
+        Waiter waiter = context.getBean("waiter2", Waiter.class);
+        waiter.greetTo("katherine");
+    }
+
 }

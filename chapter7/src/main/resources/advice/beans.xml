@@ -16,6 +16,17 @@
         <property name="target" ref="naiveWaiter"/>
     </bean>
 
+    <!--环绕增强-->
+    <bean id="greetingInterceptor" class="com.smart.chapter7.advice.GreetingInterceptor"/>
+    <bean id="waiter2" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--<property name="proxyInterfaces" value="com.smart.chapter7.advice.Waiter"/>-->
+        <property name="target" ref="naiveWaiter"/>
+        <property name="interceptorNames">
+            <list>
+                <idref bean="greetingInterceptor"/>
+            </list>
+        </property>
+    </bean>
 
 
 </beans>
