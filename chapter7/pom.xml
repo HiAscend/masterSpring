@@ -29,7 +29,7 @@
         <util.commons-codec.version>1.11</util.commons-codec.version>
         <util.cglib.version>3.2.5</util.cglib.version>
         <!--log-->
-        <log.slf4j.version>1.7.25</log.slf4j.version>
+        <log.slf4j.version>1.7.24</log.slf4j.version>
         <log.log4j2.version>2.8.2</log.log4j2.version>
         <!--test-->
         <test.org.testng.version>6.1.1</test.org.testng.version>

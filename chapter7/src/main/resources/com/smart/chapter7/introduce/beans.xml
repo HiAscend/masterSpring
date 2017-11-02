@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="controllablePerformanceMonitor" class="com.smart.chapter7.introduce.ControllablePerformanceMonitor"/>
+    <bean id="forumServiceTarget" class="com.smart.chapter7.introduce.ForumService"/>
+    <bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interfaces">
+            <list>
+                <value>com.smart.chapter7.introduce.Monitorable</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <idref bean="controllablePerformanceMonitor"/>
+            </list>
+        </property>
+        <property name="target" ref="forumServiceTarget"/>
+        <!--必须使用CGLib代理-->
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+</beans>

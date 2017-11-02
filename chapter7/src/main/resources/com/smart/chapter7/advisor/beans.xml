@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="waiterTarget" class="com.smart.chapter7.advisor.Waiter"/>
+    <bean id="sellerTarget" class="com.smart.chapter7.advisor.Seller"/>
+    <bean id="greetingBeforeAdvice" class="com.smart.chapter7.advisor.GreetingBeforeAdvice"/>
+    <bean id="greetingAdvisor" class="com.smart.chapter7.advisor.GreetingAdvisor">
+        <!--1、向切面注入一个前置增强-->
+        <property name="advice" ref="greetingBeforeAdvice"/>
+    </bean>
+
+    <!--2、通过一个父bean定义公共的配置信息-->
+    <bean id="parent" abstract="true" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interceptorNames">
+            <list>
+                <idref bean="greetingAdvisor"/>
+            </list>
+        </property>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+    <!--3、代理-->
+    <bean id="waiter" parent="parent" p:target-ref="waiterTarget"/>
+    <bean id="seller" parent="parent" p:target-ref="sellerTarget"/>
+
+    <!--静态正则表达式方法匹配切面-->
+    <bean id="regexpAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="greetingBeforeAdvice"/>
+        <!--1、用正则表达式定义目标类全限定方法名的匹配模式串-->
+        <property name="patterns">
+            <list>
+                <!--多个匹配模式之间是或的关系-->
+                <value>.*greet.*</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="waiter2" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interceptorNames">
+            <list>
+                <idref bean="regexpAdvisor"/>
+            </list>
+        </property>
+        <property name="target" ref="waiterTarget"/>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+    <bean id="seller2" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interceptorNames">
+            <list>
+                <idref bean="regexpAdvisor"/>
+            </list>
+        </property>
+        <property name="target" ref="sellerTarget"/>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+</beans>

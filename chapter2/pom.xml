@@ -7,7 +7,7 @@
     <groupId>com.smart</groupId>
     <artifactId>chapter2</artifactId>
     <version>1.0</version>
-    <name>Spring4.x第二章实例</name>
+    <name>chapter2</name>
     <description>Spring4.x第二章实例</description>
     <packaging>war</packaging>
 

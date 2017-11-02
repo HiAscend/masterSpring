@@ -28,5 +28,18 @@
         </property>
     </bean>
 
+    <!--异常抛出增强-->
+    <bean id="transactionManager" class="com.smart.chapter7.advice.TransactionManager"/>
+    <bean id="forumServiceTarget" class="com.smart.chapter7.advice.ForumService"/>
+    <bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interceptorNames">
+            <list>
+                <idref bean="transactionManager"/>
+            </list>
+        </property>
+        <property name="target" ref="forumServiceTarget"/>
+        <!--使用CGLib代理，其实不加也ok，spring会自动判断-->
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
 
 </beans>

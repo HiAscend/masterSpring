@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.annotations.Test;
 
+import java.sql.SQLException;
+
 /**
  * BeforeAdviceTest
  *
@@ -37,18 +39,31 @@ public class BeforeAdviceTest {
 
     @Test
     public void testBefore2() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("/advice/beans.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("/com/smart/chapter7/advice/beans.xml");
         Waiter waiter = context.getBean("waiter", Waiter.class);
         waiter.greetTo("katherine");
-
-
     }
 
     @Test
-    public void testBefore3() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("/advice/beans.xml");
+    public void testMethodInterceptor() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("/com/smart/chapter7/advice/beans.xml");
         Waiter waiter = context.getBean("waiter2", Waiter.class);
         waiter.greetTo("katherine");
     }
 
+    @Test
+    public void testAfterException() throws SQLException {
+        ApplicationContext context = new ClassPathXmlApplicationContext("/com/smart/chapter7/advice/beans.xml");
+        ForumService forumService = context.getBean("forumService", ForumService.class);
+        try {
+            forumService.removeForum(10);
+        } catch (Exception e) {
+
+        }
+        try {
+            forumService.updateForum(new Forum());
+        } catch (SQLException e) {
+
+        }
+    }
 }
