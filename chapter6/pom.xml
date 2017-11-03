@@ -32,7 +32,7 @@
         <!--util-->
         <util.commons-lang3.version>3.6</util.commons-lang3.version>
         <!--log-->
-        <log.slf4j.version>1.7.25</log.slf4j.version>
+        <log.slf4j.version>1.7.24</log.slf4j.version>
         <log.log4j2.version>2.8.2</log.log4j2.version>
     </properties>
 
