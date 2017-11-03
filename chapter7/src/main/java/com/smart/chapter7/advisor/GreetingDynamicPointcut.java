@@ -1,5 +1,6 @@
 package com.smart.chapter7.advisor;
 
+import org.springframework.aop.ClassFilter;
 import org.springframework.aop.support.DynamicMethodMatcherPointcut;
 
 import java.lang.reflect.Method;
@@ -23,6 +24,33 @@ public class GreetingDynamicPointcut extends DynamicMethodMatcherPointcut {
     }
 
     /**
+     * 对类进行静态切点检查
+     * @return ClassFilter
+     */
+    @Override
+    public ClassFilter getClassFilter() {
+        return clazz -> {
+            System.out.println("调用getClassFilter对" + clazz.getName() + "做静态检查.");
+            return Waiter.class.isAssignableFrom(clazz);
+        };
+    }
+
+    /**
+     * 对方法进行静态切点检查
+     * Can override to add preconditions for dynamic matching. This implementation
+     * always returns true.
+     *
+     * @param method Method
+     * @param targetClass Class
+     */
+    @Override
+    public boolean matches(Method method, Class<?> targetClass) {
+        System.out.println("调用matches(method,clazz)" + targetClass.getName() + "." + method.getName() + "做静态检查");
+        return "greetTo".equals(method.getName());
+    }
+
+    /**
+     * 对方法进行动态切点检查
      * Check whether there a runtime (dynamic) match for this method,
      * which must have matched statically.
      * <p>This method is invoked only if the 2-arg matches method returns
@@ -40,7 +68,8 @@ public class GreetingDynamicPointcut extends DynamicMethodMatcherPointcut {
      */
     @Override
     public boolean matches(Method method, Class<?> targetClass, Object... args) {
-
-        return false;
+        System.out.println("调用matches(method,clazz)" + targetClass.getName() + "." + method.getName() + "做动态检查");
+        String clientName = (String) args[0];
+        return specialClientList.contains(clientName);
     }
 }

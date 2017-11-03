@@ -11,9 +11,12 @@ import org.testng.annotations.Test;
  * @date 2017/11/2 15:05.
  */
 public class ClientTest {
+
+    private final String configLocation = "/com/smart/chapter7/advisor/beans.xml";
+
     @Test
     public void testStaticMethodMatcherPointcutAdvisor() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("/com/smart/chapter7/advisor/beans.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
         Waiter waiter = context.getBean("waiter", Waiter.class);
         Seller seller = context.getBean("seller", Seller.class);
 
@@ -25,7 +28,7 @@ public class ClientTest {
 
     @Test
     public void testRegexpMethodPointcutAdvisor() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("/com/smart/chapter7/advisor/beans.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
         Waiter waiter = context.getBean("waiter2", Waiter.class);
 
         waiter.greetTo("damon");
@@ -35,5 +38,13 @@ public class ClientTest {
         seller.greetTo("stefan");
     }
 
-
+    @Test
+    public void testDynamicAdvisor() {
+        ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
+        Waiter waiter = context.getBean("waiter3", Waiter.class);
+        waiter.serveTo("Peter");
+        waiter.greetTo("Peter");
+        waiter.serveTo("John");
+        waiter.greetTo("John");
+    }
 }

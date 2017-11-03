@@ -54,4 +54,21 @@
         <property name="proxyTargetClass" value="true"/>
     </bean>
 
+    <!--动态切面-->
+    <bean id="defaultPointcutAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut">
+            <bean class="com.smart.chapter7.advisor.GreetingDynamicPointcut"/>
+        </property>
+        <property name="advice" ref="greetingBeforeAdvice"/>
+    </bean>
+    <bean id="waiter3" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interceptorNames">
+            <list>
+                <idref bean="defaultPointcutAdvisor"/>
+            </list>
+        </property>
+        <property name="target" ref="waiterTarget"/>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
 </beans>
