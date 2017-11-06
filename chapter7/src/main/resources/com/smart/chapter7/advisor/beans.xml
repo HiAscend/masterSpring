@@ -71,4 +71,40 @@
         <property name="proxyTargetClass" value="true"/>
     </bean>
 
+    <!--流程切面-->
+    <bean id="controlFlowPointcut" class="org.springframework.aop.support.ControlFlowPointcut">
+        <!--指定流程切点的类-->
+        <constructor-arg index="0" value="com.smart.chapter7.advisor.WaiterDelegate"/>
+        <!--指定流程切点的方法-->
+        <constructor-arg index="1" value="service"/>
+    </bean>
+    <bean id="controlFlowAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="controlFlowPointcut"/>
+        <property name="advice" ref="greetingBeforeAdvice"/>
+    </bean>
+    <bean id="waiter4" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interceptorNames">
+            <list>
+                <idref bean="controlFlowAdvisor"/>
+            </list>
+        </property>
+        <property name="target" ref="waiterTarget"/>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+    <!--复合切点切面-->
+    <bean id="greetingComposablePointcut" class="com.smart.chapter7.advisor.GreetingComposablePointcut"/>
+    <bean id="composableAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="#{greetingComposablePointcut.intersectionPointcut}"/>
+        <property name="advice" ref="greetingBeforeAdvice"/>
+    </bean>
+    <bean id="waiter5" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interceptorNames">
+            <list>
+                <idref bean="composableAdvisor"/>
+            </list>
+        </property>
+        <property name="target" ref="waiterTarget"/>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
 </beans>

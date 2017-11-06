@@ -47,4 +47,15 @@ public class ClientTest {
         waiter.serveTo("John");
         waiter.greetTo("John");
     }
+
+    @Test
+    public void testControlFlowPointcut() {
+        ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
+        Waiter waiter = context.getBean("waiter4", Waiter.class);
+        WaiterDelegate waiterDelegate = new WaiterDelegate();
+        waiterDelegate.setWaiter(waiter);
+        waiter.serveTo("Peter");
+        waiter.greetTo("Peter");
+        waiterDelegate.service("Peter");
+    }
 }
