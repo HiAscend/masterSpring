@@ -95,7 +95,7 @@
     <!--复合切点切面-->
     <bean id="greetingComposablePointcut" class="com.smart.chapter7.advisor.GreetingComposablePointcut"/>
     <bean id="composableAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
-        <property name="pointcut" ref="#{greetingComposablePointcut.intersectionPointcut}"/>
+        <property name="pointcut" value="#{greetingComposablePointcut.intersectionPointcut}"/>
         <property name="advice" ref="greetingBeforeAdvice"/>
     </bean>
     <bean id="waiter5" class="org.springframework.aop.framework.ProxyFactoryBean">
@@ -107,4 +107,22 @@
         <property name="target" ref="waiterTarget"/>
         <property name="proxyTargetClass" value="true"/>
     </bean>
+
+    <!--引介切面-->
+    <bean id="introduceAdvisor" class="org.springframework.aop.support.DefaultIntroductionAdvisor">
+        <constructor-arg>
+            <bean class="com.smart.chapter7.introduce.ControllablePerformanceMonitor"/>
+        </constructor-arg>
+    </bean>
+    <bean id="forumServiceTarget" class="com.smart.chapter7.introduce.ForumService"/>
+    <bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interceptorNames">
+            <list>
+                <idref bean="introduceAdvisor"/>
+            </list>
+        </property>
+        <property name="target" ref="forumServiceTarget"/>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
 </beans>

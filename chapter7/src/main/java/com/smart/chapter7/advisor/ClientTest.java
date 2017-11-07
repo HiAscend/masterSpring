@@ -1,5 +1,7 @@
 package com.smart.chapter7.advisor;
 
+import com.smart.chapter7.introduce.ForumService;
+import com.smart.chapter7.introduce.Monitorable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.annotations.Test;
@@ -57,5 +59,32 @@ public class ClientTest {
         waiter.serveTo("Peter");
         waiter.greetTo("Peter");
         waiterDelegate.service("Peter");
+    }
+
+    @Test
+    public void testComposablePointcut() {
+        ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
+        Waiter waiter = context.getBean("waiter5", Waiter.class);
+        WaiterDelegate waiterDelegate = new WaiterDelegate();
+        waiterDelegate.setWaiter(waiter);
+        waiter.serveTo("Peter");
+        waiter.greetTo("Peter");
+        waiterDelegate.service("Peter");
+    }
+
+    @Test
+    public void testIntroducePointcut() {
+        ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
+        ForumService forumService = context.getBean("forumService", ForumService.class);
+        // 默认情况下未开启性能监视
+        forumService.removeForum(10);
+        forumService.removeTopic(1022);
+
+        // 开启性能监视功能
+        Monitorable monitorable = (Monitorable) forumService;
+        monitorable.setMonitorActive(true);
+
+        forumService.removeForum(10);
+        forumService.removeTopic(1022);
     }
 }
