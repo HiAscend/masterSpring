@@ -6,6 +6,7 @@
     <bean id="waiter" class="com.smart.chapter7.advisor.Waiter"/>
     <bean id="seller" class="com.smart.chapter7.advisor.Seller"/>
     <bean id="greetingBeforeAdvice" class="com.smart.chapter7.advisor.GreetingBeforeAdvice"/>
+    <!--BeanNameAutoProxyCreator-->
     <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
         <property name="beanNames">
             <list>
@@ -21,4 +22,6 @@
         <!--强制使用CGLib动态代理技术-->
         <property name="optimize" value="true"/>
     </bean>
+
+
 </beans>

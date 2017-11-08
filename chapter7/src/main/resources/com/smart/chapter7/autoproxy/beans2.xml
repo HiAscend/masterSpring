@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="waiter" class="com.smart.chapter7.advisor.Waiter"/>
+    <bean id="seller" class="com.smart.chapter7.advisor.Seller"/>
+    <bean id="greetingBeforeAdvice" class="com.smart.chapter7.advisor.GreetingBeforeAdvice"/>
+
+    <!--DefaultAdvisorAutoProxyCreator-->
+    <bean id="regexAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="pattern" value=".*greet.*"/>
+        <property name="advice" ref="greetingBeforeAdvice"/>
+    </bean>
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+</beans>
