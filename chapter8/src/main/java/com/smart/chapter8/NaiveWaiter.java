@@ -24,4 +24,8 @@ public class NaiveWaiter implements Waiter {
     public void smile(String clientName, int times) {
         System.out.println("NaiveWaiter.smile:" + clientName + " " + times + " times...");
     }
+
+    public void smile2(int times, String clientName) {
+        System.out.println("NaiveWaiter.smile:" + clientName + " " + times + " times...");
+    }
 }

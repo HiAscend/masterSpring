@@ -1,5 +1,6 @@
 package com.smart.chapter8.aspectj.advanced;
 
+import com.smart.chapter8.Waiter;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
@@ -50,12 +51,36 @@ public class TestAspect {
     // ------------访问连接点信息
 
 
-    @Around(value = "execution(* greetTo(..)) && target(com.smart.chapter8.NaiveWaiter)")
+    /*@Around(value = "execution(* greetTo(..)) && target(com.smart.chapter8.NaiveWaiter)")
     public void joinPointAccess(ProceedingJoinPoint joinPoint) throws Throwable{
         System.out.println("TestAspect.joinPointAccess");
         System.out.println("args[0]:" + joinPoint.getArgs()[0]);
         System.out.println("signature:" + joinPoint.getTarget().getClass());
         joinPoint.proceed();
         System.out.println("TestAspect.joinPointAccess");
-    }
+    }*/
+
+    // ------------绑定连接点参数
+    /*@Before(value = "target(com.smart.chapter8.NaiveWaiter) && args(name, num,..)")
+    public void bindPointParams(int num, String name) {
+        System.out.println("TestAspect.bindPointParams");
+        System.out.println("name = " + name);
+        System.out.println("num = " + num);
+        System.out.println("TestAspect.bindPointParams");
+    }*/
+
+    // ------------绑定代理对象
+    /*@Before(value = "execution(* greetTo(..)) && this(waiter)")
+    public void bindProxyObj(Waiter waiter) {
+        System.out.println("TestAspect.bindProxyObj");
+        System.out.println(waiter.getClass().getName());
+        System.out.println("TestAspect.bindProxyObj");
+    }*/
+    /*@Before(value = "execution(* greetTo(..)) && target(waiter)")
+    public void bindProxyObj(Waiter waiter) {
+        System.out.println("TestAspect.bindProxyObj");
+        System.out.println(waiter.getClass().getName());
+        System.out.println("TestAspect.bindProxyObj");
+    }*/
+
 }
