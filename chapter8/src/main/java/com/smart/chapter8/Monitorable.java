@@ -1,4 +1,4 @@
-package com.smart.chapter8.aspectj.anno;
+package com.smart.chapter8;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,13 +6,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * NeedTest
+ * Monitorable
  *
  * @author ascend
- * @date 2017/11/8 15:02.
+ * @date 2017/11/9 15:29.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface NeedTest {
-    boolean value() default true;
+@Target(ElementType.TYPE)
+public @interface Monitorable {
 }

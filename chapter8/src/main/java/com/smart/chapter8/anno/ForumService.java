@@ -1,4 +1,4 @@
-package com.smart.chapter8.aspectj.anno;
+package com.smart.chapter8.anno;
 
 /**
  * ForumService
