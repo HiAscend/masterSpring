@@ -1,5 +1,6 @@
 package com.smart.chapter8.aspectj.advanced;
 
+import com.smart.chapter8.Monitorable;
 import com.smart.chapter8.Waiter;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -82,5 +83,29 @@ public class TestAspect {
         System.out.println(waiter.getClass().getName());
         System.out.println("TestAspect.bindProxyObj");
     }*/
+
+    // ------------绑定类注解对象
+    /*@Before(value = "@within(m)")
+    public void bindTypeAnnoObject(Monitorable m) {
+        System.out.println("TestAspect.bindTypeAnnoObject");
+        System.out.println(m.getClass().getName());
+        System.out.println("TestAspect.bindTypeAnnoObject");
+    }*/
+
+    // ------------绑定返回值
+    /*@AfterReturning(value = "target(com.smart.chapter8.SmartSeller)", returning = "retVal")
+    public void bingReturnValue(int retVal) {
+        System.out.println("TestAspect.bingReturnValue");
+        System.out.println("retVal = " + retVal);
+        System.out.println("TestAspect.bingReturnValue");
+    }*/
+
+    // ------------绑定抛出的异常
+    @AfterThrowing(value = "target(com.smart.chapter8.SmartSeller)", throwing = "iae")
+    public void bindException(IllegalArgumentException iae) {
+        System.out.println("TestAspect.bindException");
+        System.out.println("exception:" + iae.getMessage());
+        System.out.println("TestAspect.bindException");
+    }
 
 }

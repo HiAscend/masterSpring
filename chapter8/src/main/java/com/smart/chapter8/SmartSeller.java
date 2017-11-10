@@ -14,7 +14,7 @@ public class SmartSeller implements Seller {
     }
 
     public void checkBill(int billId) {
-        if (billId ==1 ){
+        if (billId == 1) {
             throw new IllegalArgumentException("illegalArgumentException");
         } else {
             throw new RuntimeException("RuntimeException");
