@@ -31,10 +31,17 @@ public class AdviceMethods {
      *
      * @param pjp ProceedingJoinPoint
      */
-    public void aroundMethod(ProceedingJoinPoint pjp) {
+    public Object aroundMethod(ProceedingJoinPoint pjp) {
         System.out.println("AdviceMethods.aroundMethod");
         System.out.println("args[0]:" + pjp.getArgs()[0]);
+        Object proceed = null;
+        try {
+            proceed = pjp.proceed();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         System.out.println("AdviceMethods.aroundMethod");
+        return proceed;
     }
 
     /**
@@ -54,7 +61,6 @@ public class AdviceMethods {
     public void afterMethod() {
         System.out.println("AdviceMethods.afterMethod");
     }
-
 
     /**
      * 绑定连接点参数

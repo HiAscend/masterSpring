@@ -62,13 +62,13 @@ public class TestAspect {
     }*/
 
     // ------------绑定连接点参数
-    /*@Before(value = "target(com.smart.chapter8.NaiveWaiter) && args(name, num,..)")
+    @Before(value = "target(com.smart.chapter8.NaiveWaiter) && args(name, num,..)")
     public void bindPointParams(int num, String name) {
         System.out.println("TestAspect.bindPointParams");
         System.out.println("name = " + name);
         System.out.println("num = " + num);
         System.out.println("TestAspect.bindPointParams");
-    }*/
+    }
 
     // ------------绑定代理对象
     /*@Before(value = "execution(* greetTo(..)) && this(waiter)")
@@ -101,11 +101,11 @@ public class TestAspect {
     }*/
 
     // ------------绑定抛出的异常
-    @AfterThrowing(value = "target(com.smart.chapter8.SmartSeller)", throwing = "iae")
+    /*@AfterThrowing(value = "target(com.smart.chapter8.SmartSeller)", throwing = "iae")
     public void bindException(IllegalArgumentException iae) {
         System.out.println("TestAspect.bindException");
         System.out.println("exception:" + iae.getMessage());
         System.out.println("TestAspect.bindException");
-    }
+    }*/
 
 }

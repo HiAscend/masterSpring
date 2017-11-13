@@ -6,11 +6,40 @@
     <bean id="adviceMethods" class="com.smart.chapter8.schema.AdviceMethods"/>
     <bean id="naiveWaiter" class="com.smart.chapter8.NaiveWaiter"/>
     <bean id="naughtyWaiter" class="com.smart.chapter8.NaughtyWaiter"/>
+    <bean id="seller" class="com.smart.chapter8.SmartSeller"/>
+
+    <bean id="testAdvice" class="com.smart.chapter8.schema.TestBeforeAdvice"/>
 
     <aop:config proxy-target-class="true">
         <aop:pointcut id="greetToPointcut" expression="target(com.smart.chapter8.NaiveWaiter) and execution(* greetTo(..))"/>
+        <aop:advisor advice-ref="testAdvice"  pointcut="execution(* com..*.Waiter.greetTo(..))"/>
+        <!--前置-->
         <aop:aspect ref="adviceMethods">
             <aop:before method="preGreeting" pointcut-ref="greetToPointcut"/>
+        </aop:aspect>
+        <!--Final增强-->
+        <aop:aspect ref="adviceMethods">
+            <aop:after method="afterMethod" pointcut-ref="greetToPointcut"/>
+        </aop:aspect>
+        <!--后置增强-->
+        <aop:aspect ref="adviceMethods">
+            <aop:after-returning method="afterReturning" pointcut="target(com.smart.chapter8.SmartSeller)" returning="retVal"/>
+        </aop:aspect>
+        <!--环绕增强-->
+        <aop:aspect ref="adviceMethods">
+            <aop:around method="aroundMethod" pointcut="execution(* serveTo(..)) and within(com.smart.chapter8.NaiveWaiter)"/>
+        </aop:aspect>
+        <!--抛出异常增强-->
+        <aop:aspect ref="adviceMethods">
+            <aop:after-throwing method="afterThrowingMethod" pointcut="target(com.smart.chapter8.SmartSeller) and execution(* checkBill(..))" throwing="iae"/>
+        </aop:aspect>
+        <!--引介增强-->
+        <aop:aspect ref="adviceMethods">
+            <aop:declare-parents types-matching="com.smart.chapter8.NaiveWaiter" implement-interface="com.smart.chapter8.Seller" default-impl="com.smart.chapter8.SmartSeller"/>
+        </aop:aspect>
+        <!--参数绑定-->
+        <aop:aspect ref="adviceMethods">
+            <aop:before method="bindParams" pointcut="target(com.smart.chapter8.NaiveWaiter) and args(num,name,..)"/>
         </aop:aspect>
     </aop:config>
 </beans>
