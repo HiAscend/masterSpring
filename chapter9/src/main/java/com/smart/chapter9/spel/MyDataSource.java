@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MyDataSource {
-    @Value(value = "#{jdbcProperties['driverClassName']}")
+    @Value(value = "${driverClassName}")
     private String driverClassName;
-    @Value(value = "#{jdbcProperties['url']}")
+    @Value(value = "${url}")
     private String url;
-    @Value(value = "#{jdbcProperties['userName']}")
+    @Value(value = "${userName}")
     private String userName;
-    @Value(value = "#{jdbcProperties['password']}")
+    @Value(value = "${password}")
     private String password;
 }

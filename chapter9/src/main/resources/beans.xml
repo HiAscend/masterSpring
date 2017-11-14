@@ -3,8 +3,17 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    <util:properties id="jdbcProperties" location="classpath:jdbc.properties"/>
-    <context:property-placeholder properties-ref="jdbcProperties"/>
+    <!--<util:properties id="jdbcProperties" location="classpath:jdbc.properties"/>
+    <context:property-placeholder properties-ref="jdbcProperties"/>-->
+
+    <bean id="propertyPlaceHolderConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
 
     <bean id="systemPropertyBean" class="com.smart.chapter9.spel.SystemPropertyBean">
         <property name="osName" value="#{systemProperties['os.name']}"/>
