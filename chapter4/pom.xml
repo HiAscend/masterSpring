@@ -12,8 +12,8 @@
         <file.encoding>UTF-8</file.encoding>
         <spring.version>4.2.9.RELEASE</spring.version>
         <groovy.version>2.3.6</groovy.version>
-
-        <log.slf4j.version>1.7.25</log.slf4j.version>
+        <servlet.version>3.1.0</servlet.version>
+        <log.slf4j.version>1.7.24</log.slf4j.version>
         <log.log4j2.version>2.8.2</log.log4j2.version>
     </properties>
 
@@ -44,6 +44,13 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>${groovy.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!--log start-->

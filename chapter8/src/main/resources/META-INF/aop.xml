@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aspectj>
+    <!-- 以下为@Configure的测试配置 -->
+    <aspects>
+        <aspect name="com.smart.chapter8.ltw.PreGreetingAspect" />
+    </aspects>
+    <weaver options="-showWeaveInfo -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
+        <include within="com.smart.chapter8.ltw.*" />
+    </weaver>
+
+    <!-- 以下为使用AspectJ类加载期织入测试的配置 -->
+    <!--
+    <aspects>
+        <aspect name="com.smart.chapter8.configure.TopicAspectj" />
+    </aspects>
+    <weaver
+        options="-showWeaveInfo
+        -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
+        <include within="com.smart..*" />
+    </weaver>
+    -->
+</aspectj>

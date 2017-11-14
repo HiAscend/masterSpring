@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.smart.chapter8</groupId>
-    <artifactId>chapter8</artifactId>
+    <groupId>com.smart.chapter9</groupId>
+    <artifactId>chapter9</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>chapter8</name>
+    <name>chapter9</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -17,23 +17,26 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--core-->
         <core.spring.version>4.2.9.RELEASE</core.spring.version>
+        <core.groovy.version>2.4.12</core.groovy.version>
         <!--db-->
-        <mysql-connector-java.version>5.1.39</mysql-connector-java.version>
+
         <!--util-->
         <util.commons-lang3.version>3.6</util.commons-lang3.version>
-        <util.commons-codec.version>1.11</util.commons-codec.version>
-        <util.cglib.version>3.2.5</util.cglib.version>
-        <util.asm.version>6.0</util.asm.version>
-        <util.aspectj.version>1.8.12</util.aspectj.version>
+
         <!--log-->
         <log.slf4j.version>1.7.24</log.slf4j.version>
         <log.log4j2.version>2.8.2</log.log4j2.version>
         <!--test-->
-        <test.org.testng.version>6.1.1</test.org.testng.version>
+        <test.org.testng.version>6.11</test.org.testng.version>
     </properties>
 
     <dependencies>
         <!-- core start-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${core.spring.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
@@ -45,22 +48,14 @@
             <version>${core.spring.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${core.spring.version}</version>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>${core.groovy.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument</artifactId>
-            <version>${core.spring.version}</version>
-        </dependency>
+
         <!--core end-->
         <!--db start-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector-java.version}</version>
-        </dependency>
+
         <!--db end-->
         <!--util start-->
         <dependency>
@@ -68,43 +63,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>${util.commons-lang3.version}</version>
         </dependency>
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>${util.commons-codec.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>${util.cglib.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.ow2.asm</groupId>
-                    <artifactId>asm</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm</artifactId>
-            <version>${util.asm.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm-util</artifactId>
-            <version>${util.asm.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>${util.aspectj.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${util.aspectj.version}</version>
-        </dependency>
-
         <!--util end-->
         <!--log start-->
         <dependency>
@@ -145,8 +103,9 @@
         </dependency>
         <!--test end-->
     </dependencies>
+
     <build>
-        <finalName>chapter8</finalName>
+        <finalName>chapter9</finalName>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
         <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
 

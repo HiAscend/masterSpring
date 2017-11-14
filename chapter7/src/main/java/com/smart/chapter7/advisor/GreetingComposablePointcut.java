@@ -1,6 +1,5 @@
 package com.smart.chapter7.advisor;
 
-import org.springframework.aop.MethodMatcher;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.support.ComposablePointcut;
 import org.springframework.aop.support.ControlFlowPointcut;
@@ -23,5 +22,6 @@ public class GreetingComposablePointcut {
         NameMatchMethodPointcut pointcut2 = new NameMatchMethodPointcut();
         pointcut2.addMethodName("greetTo");
         return composablePointcut.intersection(pointcut1).intersection((Pointcut) pointcut2);
+
     }
 }

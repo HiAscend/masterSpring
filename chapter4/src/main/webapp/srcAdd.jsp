@@ -55,15 +55,15 @@ srcAdd.jsp?className=java.net.URL
 
         classLocation = "" + getClassLocation(Class.forName(className));
         if (error == null) {
-            out.print("类" + className + "实例的物理文件位于：");
-            out.print("<hr>");
-            out.print(classLocation);
+            System.out.print("类" + className + "实例的物理文件位于：");
+            System.out.print("<hr>");
+            System.out.print(classLocation);
         } else {
-            out.print("类" + className + "没有对应的物理文件。<br>");
-            out.print("错误：" + error);
+            System.out.print("类" + className + "没有对应的物理文件。<br>");
+            System.out.print("错误：" + error);
         }
     } catch (Exception e) {
-        out.print("异常。" + e.getMessage());
+        System.out.print("异常。" + e.getMessage());
     }
 %>
 </body>
