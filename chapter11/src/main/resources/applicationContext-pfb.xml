@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--1、引入dao和DataSource的配置文件-->
+    <import resource="classpath:applicationContext-dao.xml"/>
+    <!--2、生命事务管理器-->
+    <!--在dao中已经声明-->
+    <!--3、需要实施事务增强的目标业务Bean-->
+    <bean id="bbtForumTarget" class="com.smart.chapter11.service.BbtForum"
+        p:forumDao-ref="forumDao"
+        p:topicDao-ref="topicDao"
+        p:postDao-ref="postDao"/>
+    <bean id="bbtForum" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="dataSourceTransactionManager"/>
+        <property name="target" ref="bbtForumTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <import resource="classpath:applicationContext-dao.xml"/>
+    <!--事务管理器-->
+    <!--在dao中配置-->
+
+    <!--事务增强-->
+    <tx:advice id="txAdvice" transaction-manager="dataSourceTransactionManager">
+        <!--事务属性定义-->
+        <tx:attributes>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="add*" rollback-for="Exception"/>
+            <tx:method name="update"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--2、使用强大的切点表达式定义事务增强切面-->
+    <aop:config>
+        <!--通过aop定义事务增强切面-->
+        <aop:pointcut id="serviceMethod" expression="execution(* com.smart.service.*Forum.*(..))"/>
+        <!--引用事务增强-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
+    </aop:config>
+
+</beans>
