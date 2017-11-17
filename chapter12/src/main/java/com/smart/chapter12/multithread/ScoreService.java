@@ -1,4 +1,4 @@
-package com.smart.chapter12.nestcall;
+package com.smart.chapter12.multithread;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
  * ScoreService
  *
  * @author ascend
- * @date 2017/11/16 17:12.
+ * @date 2017/11/17 9:52.
  */
 @Service
-public class ScoreService implements BaseService {
+public class ScoreService extends BaseService {
     private JdbcTemplate jdbcTemplate;
 
     public void addScore(String userName, int toAdd) {

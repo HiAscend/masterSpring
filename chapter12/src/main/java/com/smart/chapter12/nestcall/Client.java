@@ -17,7 +17,6 @@ public class Client {
         UserService service = (UserService) ctx.getBean("userService");
 
         JdbcTemplate jdbcTemplate = (JdbcTemplate) ctx.getBean("jdbcTemplate");
-//        BasicDataSource basicDataSource = (BasicDataSource) jdbcTemplate.getDataSource();
         //插入一条记录，初始分数为10
         jdbcTemplate.execute("INSERT INTO t_user(user_name,password,score,last_logon_time) VALUES('tom','123456',10," + System.currentTimeMillis() + ")");
 

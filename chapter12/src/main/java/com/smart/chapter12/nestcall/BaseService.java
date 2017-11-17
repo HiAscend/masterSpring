@@ -6,5 +6,5 @@ package com.smart.chapter12.nestcall;
  * @author ascend
  * @date 2017/11/16 17:11.
  */
-public class BaseService {
+public interface BaseService {
 }

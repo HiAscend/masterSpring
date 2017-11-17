@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @date 2017/11/16 17:11.
  */
 @Service
-public class UserService extends BaseService {
+public class UserService implements BaseService {
     private JdbcTemplate jdbcTemplate;
     private ScoreService scoreService;
 

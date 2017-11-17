@@ -14,11 +14,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--core-->
-        <core.spring.version>4.2.9.RELEASE</core.spring.version>
+        <core.spring.version>4.3.12.RELEASE</core.spring.version>
         <core.cglib.version>3.2.5</core.cglib.version>
         <core.asm.version>6.0</core.asm.version>
         <core.aspectj.version>1.8.12</core.aspectj.version>
-        <core.hibernate.version>5.2.12.Final</core.hibernate.version>
+        <core.hibernate.version>5.1.10.Final</core.hibernate.version>
         <!--db-->
         <db.commons-dbcp2.version>2.1.1</db.commons-dbcp2.version>
         <db.mysql-connector-java.version>5.1.44</db.mysql-connector-java.version>
