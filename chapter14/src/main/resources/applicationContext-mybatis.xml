@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--    <context:component-scan base-package="com.smart.dao.mybatis"/>
+    <context:component-scan base-package="com.smart.service.mybatis"/>-->
+    <context:component-scan base-package="com.smart.chapter14" resource-pattern="**/mybatis/*.class"/>
+
+    <!--配置文件读取-->
+    <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!--可用的dbcp数据源-->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${driverClassName}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+        <!--数据源连接数量-->
+        <property name="initialSize" value="1"/>
+        <property name="maxTotal" value="50"/>
+        <property name="minIdle" value="2"/>
+        <property name="maxIdle" value="10"/>
+        <property name="maxWaitMillis" value="60000"/>
+        <!--连接健康情况维护和检查-->
+        <property name="validationQuery" value="select 1"/>
+        <property name="validationQueryTimeout" value="30"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="300000"/>
+        <property name="minEvictableIdleTimeMillis" value="600000"/>
+        <!--缓存语句-->
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxOpenPreparedStatements" value="-1"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:myBatisConfig.xml"/>
+        <property name="mapperLocations" value="classpath:com/smart/chapter14/domain/mybatis/*.xml"/>
+    </bean>
+
+</beans>

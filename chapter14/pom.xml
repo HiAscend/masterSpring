@@ -17,10 +17,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--core-->
         <core.spring.version>4.3.12.RELEASE</core.spring.version>
+        <core.aopalliance.version>1.0</core.aopalliance.version>
         <core.cglib.version>3.2.5</core.cglib.version>
         <core.asm.version>6.0</core.asm.version>
         <core.aspectj.version>1.8.12</core.aspectj.version>
         <core.hibernate.version>5.1.10.Final</core.hibernate.version>
+        <core.mybatis.version>3.4.5</core.mybatis.version>
+        <core.mybatis-spring.version>1.3.1</core.mybatis-spring.version>
         <!--db-->
         <db.commons-dbcp2.version>2.1.1</db.commons-dbcp2.version>
         <db.mysql-connector-java.version>5.1.44</db.mysql-connector-java.version>
@@ -66,6 +69,11 @@
             <version>${core.spring.version}</version>
         </dependency>
         <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>${core.aopalliance.version}</version>
+        </dependency>
+        <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>${core.cglib.version}</version>
@@ -105,6 +113,16 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${core.hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${core.mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${core.mybatis-spring.version}</version>
         </dependency>
 
         <!--core end-->
@@ -159,7 +177,6 @@
             <version>${test.org.testng.version}</version>
             <!--<scope>test</scope>-->
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
