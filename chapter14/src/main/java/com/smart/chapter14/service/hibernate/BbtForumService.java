@@ -13,14 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * BbtForumSerive
+ * BbtForumService
  *
  * @author ascend
  * @date 2017/11/28 10:11.
  */
 @Transactional
 @Service
-public class BbtForumSerive {
+public class BbtForumService {
     private ForumHibernateDao forumHibernateDao;
     private TopicHibernateDao topicHibernateDao;
     private PostHibernateDao postHibernateDao;

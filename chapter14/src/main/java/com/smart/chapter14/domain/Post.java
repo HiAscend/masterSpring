@@ -1,6 +1,7 @@
 package com.smart.chapter14.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "t_post")
-public class Post {
+public class Post  implements Serializable {
     @Id
     @Column(name = "post_id")
     private int postId;

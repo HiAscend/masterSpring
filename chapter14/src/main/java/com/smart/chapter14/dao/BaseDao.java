@@ -24,7 +24,7 @@ public class BaseDao<T> {
     }
 
     public T get(Serializable id) {
-        return hibernateTemplate.get((Class<T>) entityClass, id);
+        return (T)hibernateTemplate.get(entityClass, id);
     }
 
     public void save(T entity) {
@@ -42,10 +42,5 @@ public class BaseDao<T> {
     @Autowired
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
-    }
-
-    public static void main(String[] args) {
-        BaseDao<Object> dao = new BaseDao<>();
-        System.out.println(dao.entityClass);
     }
 }

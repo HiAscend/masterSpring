@@ -1,4 +1,4 @@
-package com.smart.chapter14.service;
+package com.smart.chapter14.service.mybatis;
 
 import com.smart.chapter14.domain.Forum;
 import com.smart.chapter14.service.mybatis.BbtForumSerive;
