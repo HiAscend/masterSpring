@@ -11,4 +11,9 @@
         <typeAlias alias="Topic" type="com.smart.chapter14.domain.Topic"/>
         <typeAlias alias="Post" type="com.smart.chapter14.domain.Post"/>
     </typeAliases>
+    <!--<mappers>
+        <mapper resource="com/smart/chapter14/domain/mybatis/Forum.xml"/>
+        <mapper resource="com/smart/chapter14/domain/mybatis/Topic.xml"/>
+        <mapper resource="com/smart/chapter14/domain/mybatis/Post.xml"/>
+    </mappers>-->
 </configuration>

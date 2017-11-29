@@ -1,5 +1,7 @@
 package com.smart.chapter14.domain;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -44,5 +46,10 @@ public class Forum {
 
     public void setForumDesc(String forumDesc) {
         this.forumDesc = forumDesc;
+    }
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this);
     }
 }

@@ -46,8 +46,8 @@
         <property name="packagesToScan" value="com.smart.chapter14.domain"/>
         <property name="hibernateProperties">
             <props>
-                <prop key="show_sql">true</prop>
-                <prop key="dialect">org.hibernate.dialect.MySQL57InnoDBDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL57InnoDBDialect</prop>
             </props>
         </property>
     </bean>

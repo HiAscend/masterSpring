@@ -17,18 +17,18 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * TestXmlHibernateDao
+ * TestAnnoHibernateDao
  *
  * @author ascend
- * @date 2017/11/28 21:26
+ * @date 2017/11/29 13:56.
  */
-@ContextConfiguration(locations = {"classpath:applicationContext-hbt.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext-hbt-anno.xml"})
 @Transactional
-public class TestXmlHibernateDao extends AbstractTransactionalTestNGSpringContextTests {
-    @Autowired
-    private PostHibernateDao postHibernateDao;
+public class TestAnnoHibernateDao extends AbstractTransactionalTestNGSpringContextTests{
     @Autowired
     private ForumHibernateDao forumHibernateDao;
+    @Autowired
+    private PostHibernateDao postHibernateDao;
 
     @SuppressWarnings("Duplicates")
     @Test
@@ -51,5 +51,4 @@ public class TestXmlHibernateDao extends AbstractTransactionalTestNGSpringContex
         List<Forum> forums = forumHibernateDao.findForumByName("forum");
         Assert.assertTrue(forums.size() > 0);
     }
-
 }

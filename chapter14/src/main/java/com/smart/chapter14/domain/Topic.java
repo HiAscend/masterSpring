@@ -23,7 +23,7 @@ public class Topic {
     @Column(name = "topic_time")
     private Date topicTime;
     @ManyToOne
-    @Column(name = "forum_id")
+    @JoinColumn(name = "forum_id")
     private Forum forum;
     @Column(name = "topic_views")
     private int topicViews;
