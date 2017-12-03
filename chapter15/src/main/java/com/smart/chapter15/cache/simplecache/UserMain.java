@@ -21,6 +21,6 @@ public class UserMain {
         // 第二次查询，应该不查询数据库，直接返回缓存中的指
         System.out.println("second query...");
         userService.getUserById("somebody");
-        userService.getUserById("somebodyelse");
+//        userService.getUserById("somebodyelse");
     }
 }
