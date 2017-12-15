@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class UserMain {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-hazelcast.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("/applicationContext-hazelcast.xml");
         UserService userService = (UserService) context.getBean("hazelcastUserService");
 
         User user1 = new User("2", "w2", 34);

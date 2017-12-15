@@ -15,7 +15,7 @@ import java.util.Map;
  */
 @Service(value = "hazelcastUserService")
 public class UserService {
-    private Map<Integer, User> users = new HashMap<Integer, User>();
+    private Map<Integer, User> users = new HashMap<>();
 
     {
         users.put(1, new User("1", "w1", 37));
