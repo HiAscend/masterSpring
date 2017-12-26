@@ -22,7 +22,7 @@
         <core.hibernate.version>5.1.10.Final</core.hibernate.version>
         <core.mybatis.version>3.4.5</core.mybatis.version>
         <core.mybatis-spring.version>1.3.1</core.mybatis-spring.version>
-        <core.quartx.version>1.8.6</core.quartx.version>
+        <core.quartz.version>1.8.6</core.quartz.version>
         <!--db-->
         <db.commons-dbcp2.version>2.1.1</db.commons-dbcp2.version>
         <db.mysql-connector-java.version>5.1.44</db.mysql-connector-java.version>
@@ -133,7 +133,7 @@
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
-            <version>${core.quartx.version}</version>
+            <version>${core.quartz.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>slf4j-api</artifactId>
