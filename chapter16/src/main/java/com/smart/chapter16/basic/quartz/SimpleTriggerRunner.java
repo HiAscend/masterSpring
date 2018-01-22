@@ -15,11 +15,11 @@ import java.util.Date;
 public class SimpleTriggerRunner {
     public static void main(String[] args) throws SchedulerException {
         JobDetail jobDetail = new JobDetail("job1", "jgroup1", SimpleJob.class);
-        SimpleTrigger simpleTrigger = new SimpleTrigger("trigger1", "tgroup1");
+        SimpleTrigger simpleTrigger = new SimpleTrigger("trigger1_1", "tgroup1");
         simpleTrigger.setStartTime(new Date());
         simpleTrigger.setRepeatInterval(2000);
         // 重复次数
-        simpleTrigger.setRepeatCount(4);
+        simpleTrigger.setRepeatCount(10);
 
         SchedulerFactory schedulerFactory = new StdSchedulerFactory();
         Scheduler scheduler = schedulerFactory.getScheduler();

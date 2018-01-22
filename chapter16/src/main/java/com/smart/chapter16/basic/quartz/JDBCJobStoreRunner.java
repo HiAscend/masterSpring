@@ -1,9 +1,6 @@
 package com.smart.chapter16.basic.quartz;
 
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.Trigger;
+import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
 /**
@@ -20,13 +17,16 @@ public class JDBCJobStoreRunner {
             // 获取调度器中所有的触发器组
             String[] triggerGroupNames = scheduler.getTriggerGroupNames();
             // 重新恢复在tgroup1组中名为trigger1_1的触发器的运行
-            for (int i = 0; i < triggerGroupNames.length; i++) {
-                String[] triggers = scheduler.getTriggerNames(triggerGroupNames[i]);
-                for (int j = 0; j < triggers.length; j++) {
-                    Trigger trigger = scheduler.getTrigger(triggers[j], triggerGroupNames[i]);
-
+            for (String triggerGroupName : triggerGroupNames) {
+                String[] triggers = scheduler.getTriggerNames(triggerGroupName);
+                for (String trigger1 : triggers) {
+                    Trigger trigger = scheduler.getTrigger(trigger1, triggerGroupName);
+                    if (trigger instanceof SimpleTrigger && trigger.getFullName().equals("tgroup1.trigger1_1")) {
+                        scheduler.rescheduleJob(trigger1, triggerGroupName, trigger);
+                    }
                 }
             }
+            scheduler.start();
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
