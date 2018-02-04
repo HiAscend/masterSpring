@@ -19,7 +19,7 @@ public class SimpleTriggerRunner {
         simpleTrigger.setStartTime(new Date());
         simpleTrigger.setRepeatInterval(2000);
         // 重复次数
-        simpleTrigger.setRepeatCount(0);
+        simpleTrigger.setRepeatCount(5);
 
         SchedulerFactory schedulerFactory = new StdSchedulerFactory();
         Scheduler scheduler = schedulerFactory.getScheduler();

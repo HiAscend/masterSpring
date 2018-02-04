@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--通过JobDetailFactoryBean实现-->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.smart.chapter16.quartz.MyJob"/>
+        <property name="applicationContextJobDataKey" value="applicationContext"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="size" value="10"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--通过封装服务类方法实现-->
+    <bean id="jobDetail_1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="myService"/>
+        <property name="targetMethod" value="doJob"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="myService" class="com.smart.chapter16.service.MyService"/>
+
+
+
+</beans>
