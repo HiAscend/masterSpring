@@ -12,7 +12,7 @@ import org.springframework.context.ApplicationContext;
  * @author ascend
  * @date 2018/02/04 21:21
  */
-public class MyJob implements Job{
+public class MyJob implements Job {
 
 
     @Override
@@ -25,5 +25,9 @@ public class MyJob implements Job{
         // 对JobDataMap所做的更改是否会被持久话取决于任务的类型
         jobDataMap.put("size", size + "0");
         // sth
+
+        int count = jobDataMap.getInt("count");
+        System.out.println("count = " + count);
+
     }
 }

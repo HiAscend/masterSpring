@@ -17,9 +17,56 @@
     <bean id="jobDetail_1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="myService"/>
         <property name="targetMethod" value="doJob"/>
+        <!--有状态的任务不能并发执行，无状态的任务可以并发执行-->
+        <!--默认true，也就是说默认支持并发-->
         <property name="concurrent" value="false"/>
     </bean>
     <bean id="myService" class="com.smart.chapter16.service.MyService"/>
+
+    <!--simpleTrigger-->
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail"/>
+        <property name="startDelay" value="1000"/>
+        <property name="repeatInterval" value="2000"/>
+        <property name="repeatCount" value="100"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="count" value="10"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--cronTrigger-->
+    <bean id="checkImagesTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail"/>
+        <property name="cronExpression" value="0/5 * * * * ?"/>
+    </bean>
+
+    <!--scheduler-->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="simpleTrigger"/>
+            </list>
+        </property>
+        <!--以Map类型设置SchedulerContext数据-->
+        <property name="schedulerContextAsMap">
+            <map>
+                <entry key="timeout" value="30"/>
+            </map>
+        </property>
+        <!--显示的指定quartz配置文件的地址-->
+        <property name="configLocation" value="classpath:com/smart/chapter16/quartz/quartz.properties"/>
+        <!--延迟30s启动-->
+        <property name="startupDelay" value="30"/>
+        <!--quartzProperties-->
+        <property name="quartzProperties">
+            <props>
+                <prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
+                <prop key="org.quartz.threadPool.threadCount">10</prop>
+            </props>
+        </property>
+    </bean>
 
 
 
