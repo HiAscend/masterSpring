@@ -22,7 +22,7 @@
         <core.hibernate.version>5.1.10.Final</core.hibernate.version>
         <core.mybatis.version>3.4.5</core.mybatis.version>
         <core.mybatis-spring.version>1.3.1</core.mybatis-spring.version>
-        <core.quartz.version>1.8.6</core.quartz.version>
+        <core.quartz.version>2.2.3</core.quartz.version>
         <!--db-->
         <db.commons-dbcp.version>1.4</db.commons-dbcp.version>
         <db.mysql-connector-java.version>5.1.44</db.mysql-connector-java.version>
@@ -149,6 +149,12 @@
             <artifactId>commons-dbcp</artifactId>
             <version>${db.commons-dbcp.version}</version>
         </dependency>
+        <!--<dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>-->
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
