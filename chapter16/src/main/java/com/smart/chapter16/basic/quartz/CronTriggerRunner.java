@@ -14,10 +14,12 @@ import java.text.ParseException;
 public class CronTriggerRunner {
     public static void main(String[] args) {
         try {
-            JobDetail jobDetail = new JobDetail("job1_2", "jgroup1", SimpleJob.class);
-            CronTrigger cronTrigger = new CronTrigger("trigger1_2", "tgroup1");
-            CronExpression cronExpression = new CronExpression("0/4 * * * * ?");
-            cronTrigger.setCronExpression(cronExpression);
+            JobDetail jobDetail = JobBuilder.newJob(SimpleJob.class)
+                .withIdentity("job1-2", "jgroup1").build();
+            Trigger cronTrigger = TriggerBuilder.newTrigger()
+                .withIdentity("grigger1_2", "tgroup1")
+                .withSchedule(CronScheduleBuilder.cronSchedule("0/4 * * * * ?"))
+                .build();
 
             SchedulerFactory schedulerFactory = new StdSchedulerFactory();
             Scheduler scheduler = schedulerFactory.getScheduler();
@@ -25,7 +27,7 @@ public class CronTriggerRunner {
             scheduler.start();
 
             // sleep ?
-        } catch (ParseException | SchedulerException e) {
+        } catch (SchedulerException e) {
             e.printStackTrace();
         }
     }

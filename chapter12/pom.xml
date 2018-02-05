@@ -67,12 +67,12 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>${core.cglib.version}</version>
-            <exclusions>
+            <!--<exclusions>
                 <exclusion>
                     <groupId>org.ow2.asm</groupId>
                     <artifactId>asm</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
         <dependency>
             <groupId>org.ow2.asm</groupId>

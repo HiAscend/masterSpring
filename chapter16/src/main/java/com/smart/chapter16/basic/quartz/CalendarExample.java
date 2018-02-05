@@ -38,11 +38,16 @@ public class CalendarExample {
         // 向Scheduler注册日历
         scheduler.addCalendar("holidays", holidays, false, false);
         // 4月1日上午十点
-        Date date = TriggerUtils.getDateOf(0, 0, 10, 1, 4);
-        Date date = TriggerUtils.(0, 0, 10, 1, 4);
-        JobDetail job = new JobDetail("job1", "group1", SimpleJob.class);
-        SimpleTrigger trigger = new SimpleTrigger("trigger1", "group1", date, null, SimpleTrigger.REPEAT_INDEFINITELY, 60L * 60L * 1000L);
-        trigger.setCalendarName("holidays");
+        Date date = DateBuilder.dateOf(10, 0, 0, 1, 4);
+        JobDetail job = JobBuilder.newJob(SimpleJob.class).withIdentity("job1", "group1").build();
+        Trigger trigger = TriggerBuilder.newTrigger()
+            .withIdentity("trigger1", "group1")
+            .modifiedByCalendar("holidays")
+            .startAt(date)
+            .endAt(null)
+            .withSchedule(SimpleScheduleBuilder.repeatHourlyForever())
+            .build();
+
         scheduler.scheduleJob(job, trigger);
         scheduler.start();
 
