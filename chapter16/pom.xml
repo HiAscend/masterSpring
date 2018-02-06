@@ -188,6 +188,12 @@
             <artifactId>hazelcast-all</artifactId>
             <version>3.3.5</version>
         </dependency>
+        <!--jdk timer task, spring-context-support-->
+        <dependency>
+            <groupId>org.codehaus.fabric3.api</groupId>
+            <artifactId>commonj</artifactId>
+            <version>1.1.0</version>
+        </dependency>
 
         <!--util end-->
         <!--log start-->
