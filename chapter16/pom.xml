@@ -14,7 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--core-->
-        <core.spring.version>4.3.12.RELEASE</core.spring.version>
+        <!--<core.spring.version>4.3.12.RELEASE</core.spring.version>-->
+        <core.spring.version>2.0.6</core.spring.version>
         <core.aopalliance.version>1.0</core.aopalliance.version>
         <core.cglib.version>3.2.5</core.cglib.version>
         <core.asm.version>6.0</core.asm.version>
@@ -30,6 +31,8 @@
         <util.commons-lang3.version>3.6</util.commons-lang3.version>
         <util.ehcache.version>2.10.4</util.ehcache.version>
         <util.guava.version>18.0</util.guava.version>
+        <util.commonj.version>1.1.1</util.commonj.version>
+        <util.spring-support.version>2.0.6</util.spring-support.version>
         <!--log-->
         <log.slf4j.version>1.7.24</log.slf4j.version>
         <log.log4j2.version>2.8.2</log.log4j2.version>
@@ -149,12 +152,6 @@
             <artifactId>commons-dbcp</artifactId>
             <version>${db.commons-dbcp.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
-        </dependency>-->
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -192,9 +189,13 @@
         <dependency>
             <groupId>org.codehaus.fabric3.api</groupId>
             <artifactId>commonj</artifactId>
-            <version>1.1.0</version>
+            <version>${util.commonj.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-support</artifactId>
+            <version>2.0.6</version>
+        </dependency>
         <!--util end-->
         <!--log start-->
         <dependency>

@@ -5,6 +5,7 @@ import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * MyJob
@@ -28,6 +29,5 @@ public class MyJob implements Job {
 
         int count = jobDataMap.getInt("count");
         System.out.println("count = " + count);
-
     }
 }
