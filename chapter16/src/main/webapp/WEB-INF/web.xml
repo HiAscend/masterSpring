@@ -3,7 +3,39 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-    <display-name>Archetype Created Web Application</display-name>
+    <!--摆放顺序-->
+    <!--http://blog.sina.com.cn/s/blog_3e8e262b0100u5cz.html-->
+    <!--"?"表示该标签出现次数最多为1，"*"表示可以多次出现-->
+    <!--1. icon?-->
+    <!--2. display-name?-->
+    <display-name>chapter16</display-name>
+    <!--3. description?-->
+    <!--4. distributable?-->
+    <!--5. context-param*-->
+    <!--6. filter*-->
 
+    <!--7. filter-mapping*-->
 
+    <!--8. listener*-->
+    <listener>
+        <listener-class>com.smart.chapter16.web.StartCycleRunTask</listener-class>
+    </listener>
+    <!--9. servlet*-->
+
+    <!--10.servlet-mapping*-->
+
+    <!--11.session-config?-->
+    <!--12.mime-mapping*-->
+    <!--13.welcome-file-list?-->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <!--14.error-page*-->
+    <!--15.taglib*-->
+    <!--16.resource-env-ref*-->
+    <!--17.resource-ref*-->
+    <!--18.security-constraint*-->
+    <!--19.login-config?-->
+    <!--20.security-role*-->
+    <!--21.env-entry*-->
 </web-app>
