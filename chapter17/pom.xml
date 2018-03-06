@@ -29,7 +29,9 @@
         <db.mysql-connector-java.version>5.1.44</db.mysql-connector-java.version>
         <!--util-->
         <util.commons-lang3.version>3.6</util.commons-lang3.version>
-
+        <util.servlet.jsp-api.version>2.3.1</util.servlet.jsp-api.version>
+        <util.servlet.jstl.version>1.2</util.servlet.jstl.version>
+        <util.servlet.el-api.version>3.0.0</util.servlet.el-api.version>
 
         <!--log-->
         <log.slf4j.version>1.7.24</log.slf4j.version>
@@ -167,7 +169,21 @@
             <artifactId>commons-lang3</artifactId>
             <version>${util.commons-lang3.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>${util.servlet.jsp-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${util.servlet.jstl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>${util.servlet.el-api.version}</version>
+        </dependency>
         <!--util end-->
         <!--log start-->
         <dependency>
