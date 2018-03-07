@@ -13,7 +13,23 @@
 </head>
 <body>
 <form method="post" action="<c:url value='/user.html'/>">
-
+    <table>
+        <tr>
+            <td><label for="user-name-label">用户名：</label> </td>
+            <td><input type="text" name="username" id="user-name-label"></td>
+        </tr>
+        <tr>
+            <td><label for="password-label">密码：</label> </td>
+            <td><input type="password" name="password" id="password-label"></td>
+        </tr>
+        <tr>
+            <td><label for="realName-label">姓名：</label></td>
+            <td><input type="text" name="realName" id="realName-label"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" name="提交"></td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>
