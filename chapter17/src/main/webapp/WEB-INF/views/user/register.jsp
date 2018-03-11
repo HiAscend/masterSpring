@@ -16,7 +16,7 @@
     <table>
         <tr>
             <td><label for="user-name-label">用户名：</label> </td>
-            <td><input type="text" name="username" id="user-name-label"></td>
+            <td><input type="text" name="userName" id="user-name-label"></td>
         </tr>
         <tr>
             <td><label for="password-label">密码：</label> </td>

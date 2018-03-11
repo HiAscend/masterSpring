@@ -1,4 +1,4 @@
-package com.smart.chapter17.web;
+package com.smart.chapter17;
 
 import com.smart.chapter17.domain.User;
 import org.slf4j.Logger;
