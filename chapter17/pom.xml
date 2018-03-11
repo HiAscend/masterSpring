@@ -272,12 +272,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                     <compilerVersion>1.8</compilerVersion>
                     <encoding>UTF-8</encoding>
+                    <!--开启编译输出调式信息，解决java类中获取方法入参的名称，但是这样会使目标类变大，对运行效率有一定影响，最好的解决方式是显示指定绑定的参数名-->
+                    <debug>false</debug>
                 </configuration>
             </plugin>
             <!--maven test plugin-->
