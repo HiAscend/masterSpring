@@ -14,7 +14,7 @@ import javax.servlet.ServletRegistration;
  * @author ascend
  * @date 2018/03/04 19:45
  */
-public class SmartApplicationInitializer implements WebApplicationInitializer {
+public class SmartApplicationInitializer /*implements WebApplicationInitializer*/ {
     /**
      * Configure the given {@link ServletContext} with any servlets, filters, listeners
      * context-params and attributes necessary for initializing this web application. See
@@ -24,7 +24,7 @@ public class SmartApplicationInitializer implements WebApplicationInitializer {
      * @throws ServletException if any call against the given {@code ServletContext}
      *                          throws a {@code ServletException}
      */
-    @Override
+//    @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         /*ServletRegistration.Dynamic registration = servletContext.addServlet("dispatcher", new DispatcherServlet());
         registration.setLoadOnStartup(1);

@@ -27,9 +27,14 @@ public class UserController {
         // 在形参列表中，添加@ModelAttribute("user") ?
         userService.createUser(user);
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("/user/createSuccess");
+        mav.setViewName("user/createSuccess");
         mav.addObject("user", user);
         return mav;
+    }
+
+    @RequestMapping("/register")
+    public String register() {
+        return "user/register";
     }
 
     @Autowired
