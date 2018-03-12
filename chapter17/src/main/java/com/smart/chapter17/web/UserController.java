@@ -6,11 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * UserController
@@ -23,6 +22,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
     private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
     private UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(method = {RequestMethod.POST})
     public ModelAndView createUser(@ModelAttribute("user") User user) {
@@ -49,8 +53,56 @@ public class UserController {
         return mav;
     }
 
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    // 1、请求参数按名称匹配的方式绑定到方法入参中，方法返回的字符串代表逻辑视图名
+
+    @RequestMapping(path = "/handle1")
+    public String handle1(@RequestParam("userName") String userName,
+                          @RequestParam("password") String password,
+                          @RequestParam("realName") String realName) {
+        return "success";
     }
+
+    // 2、将Cookie值及报文头属性绑定到入参中，方法返回ModelAndView
+
+    @RequestMapping(path = "/handle2")
+    public ModelAndView handle2(@CookieValue("JSESSIONID") String sessionId, @RequestHeader("Accept-Language") String acceptLanguage) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("success");
+        mav.addObject("user", new User());
+        return mav;
+    }
+
+    // 3、请求参数按名称匹配的方式绑定到user的属性中，方法返回的字符串代表逻辑视图名
+
+    @RequestMapping(path = "/handle3")
+    public String handle3(User user) {
+        return "success";
+    }
+
+    // 4、直接将HTTP请求对象传递给处理方法，方法返回的字符串代表逻辑视图名
+
+    @RequestMapping(path = "/handle4")
+    public String handle4(HttpServletRequest request) {
+        return "success";
+    }
+
+    @RequestMapping(path = "/handle11")
+    public String handle11(@RequestParam(value = "userName", required = false) String userName,
+                           @RequestParam("age") int age) {
+        return "success";
+    }
+
+    @RequestMapping(path = "/handle12")
+    public String handle12(@RequestParam(value = "sessionId", required = false) String sessionId,
+                           @RequestParam("age") int age) {
+        return "success";
+    }
+
+    @RequestMapping(path = "/handle13")
+    public String handle13(@RequestHeader("Accept-Encoding") String endcoding,
+                           @RequestHeader("Keep-Alive") long keepAlive) {
+        return "success";
+    }
+
+
 }
