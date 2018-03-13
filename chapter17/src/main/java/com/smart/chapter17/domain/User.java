@@ -1,5 +1,7 @@
 package com.smart.chapter17.domain;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 /**
  * User
  *
@@ -11,6 +13,8 @@ public class User {
     private String userName;
     private String password;
     private String realName;
+
+    private Dept dept;
 
     public String getUserId() {
         return userId;
@@ -44,13 +48,16 @@ public class User {
         this.realName = realName;
     }
 
+    public Dept getDept() {
+        return dept;
+    }
+
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
-            "userId='" + userId + '\'' +
-            ", userName='" + userName + '\'' +
-            ", password='" + password + '\'' +
-            ", realName='" + realName + '\'' +
-            '}';
+        return ReflectionToStringBuilder.toString(this);
     }
 }

@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * UserController
@@ -104,5 +106,18 @@ public class UserController {
         return "success";
     }
 
+    @RequestMapping(path = "/handle14")
+    public String handle14(User user) {
+        LOG.debug("user:{}", user);
+        return "success";
+    }
 
+    // 使用servlet-api对象作为入参
+
+    @RequestMapping(path = "/handle21")
+    public void handle21(HttpServletRequest request, HttpServletResponse response) {
+        String userName = WebUtils.findParameterValue(request, "userName");
+        LOG.debug("userName:{}", userName);
+
+    }
 }
