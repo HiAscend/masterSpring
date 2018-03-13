@@ -7,11 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * UserController
@@ -115,9 +117,39 @@ public class UserController {
     // 使用servlet-api对象作为入参
 
     @RequestMapping(path = "/handle21")
-    public void handle21(HttpServletRequest request, HttpServletResponse response) {
+    public String handle21(HttpServletRequest request, HttpServletResponse response) {
         String userName = WebUtils.findParameterValue(request, "userName");
         LOG.debug("userName:{}", userName);
-
+        return "success";
     }
+
+    @RequestMapping(path = "/handle22")
+    public ModelAndView handle22(HttpServletRequest request) {
+        String userName = WebUtils.findParameterValue(request, "userName");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("success");
+        mav.addObject("userName", userName);
+        return mav;
+    }
+
+    @RequestMapping(path = "/handle23")
+    public String handle23(HttpSession session) {
+        session.setAttribute("sessionId", 1234);
+        return "success";
+    }
+
+    @RequestMapping(path = "/handle24")
+    public String handle24(HttpServletRequest request,
+                           @RequestParam("userName") String userName) {
+        return "success";
+    }
+
+    @RequestMapping(path = "/handle25")
+    public String handle25(WebRequest request) {
+        String userName = request.getParameter("userName");
+
+        return "success";
+    }
+
+
 }
