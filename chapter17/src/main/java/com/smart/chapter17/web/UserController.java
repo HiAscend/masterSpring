@@ -2,10 +2,15 @@ package com.smart.chapter17.web;
 
 import com.smart.chapter17.UserService;
 import com.smart.chapter17.domain.User;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +19,8 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * UserController
@@ -63,6 +70,9 @@ public class UserController {
     public String handle1(@RequestParam("userName") String userName,
                           @RequestParam("password") String password,
                           @RequestParam("realName") String realName) {
+        LOG.debug("userName:{}", userName);
+        LOG.debug("password:{}", password);
+        LOG.debug("realName:{}", realName);
         return "success";
     }
 
@@ -149,6 +159,30 @@ public class UserController {
         String userName = request.getParameter("userName");
 
         return "success";
+    }
+
+    @RequestMapping(path = "/handle31")
+    public void handle31(OutputStream os) throws IOException {
+        Resource resource = new ClassPathResource("image.png");
+        // FileCopyUtils.copy(resource.getInputStream(), os);
+        IOUtils.copy(resource.getInputStream(), os);
+    }
+
+    // 将请求报文体转换为字符串绑定到requestBody入参中
+
+    // 会报错，不知为何
+    @RequestMapping(path = "/handle41")
+    public String handle41(@RequestBody String requestBody) {
+        LOG.debug("requestBody;{}", requestBody);
+        return "success";
+    }
+
+    @ResponseBody
+    @RequestMapping(path = "/handle42/{imageId}")
+    public byte[] handle42(@PathVariable("imageId") String imageId) throws IOException {
+        LOG.debug("load image of {}", imageId);
+        Resource resource = new ClassPathResource("image.png");
+        return IOUtils.toByteArray(resource.getInputStream());
     }
 
 
