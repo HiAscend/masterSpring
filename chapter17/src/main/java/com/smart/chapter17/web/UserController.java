@@ -170,10 +170,11 @@ public class UserController {
 
     // 将请求报文体转换为字符串绑定到requestBody入参中
 
-    // 会报错，不知为何
+    // annotation-driven
+
     @RequestMapping(path = "/handle41")
     public String handle41(@RequestBody String requestBody) {
-        LOG.debug("requestBody;{}", requestBody);
+        LOG.debug("requestBody:{}", requestBody);
         return "success";
     }
 
