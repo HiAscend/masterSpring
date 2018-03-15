@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
@@ -186,5 +188,20 @@ public class UserController {
         return IOUtils.toByteArray(resource.getInputStream());
     }
 
+    // 使用HttpEntity 访问请求和报文头的数据
+
+    @RequestMapping(path = "/handle43")
+    public String handle43(HttpEntity<String> httpEntity) {
+        long contentLength = httpEntity.getHeaders().getContentLength();
+        LOG.debug("contentLength:{}", contentLength);
+        LOG.debug("body:{}", httpEntity.getBody());
+        return "success";
+    }
+
+    @RequestMapping(path = "/handle44/{imageId}")
+    public ResponseEntity handle44(@PathVariable("imageId") String imageId) {
+        LOG.debug("load image of:{}", imageId);
+        return null;
+    }
 
 }
