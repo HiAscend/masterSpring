@@ -26,6 +26,26 @@
                 <bean class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter"/>
                 <!--新增-->
                 <bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"/>
+                <!--处理xml格式的请求或相应信息-->
+                <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                    <property name="marshaller" ref="xmlMarshaller"/>
+                    <property name="unmarshaller" ref="xmlMarshaller"/>
+                </bean>
+                <!--处理json格式的请求或相应消息-->
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+    <!--声明Marshaller，使用XStream技术-->
+    <bean id="xmlMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+        <property name="streamDriver">
+            <!--使用STAX对xml消息进行处理，STAX占用内存少，相应速度也很快-->
+            <bean class="com.thoughtworks.xstream.io.xml.StaxDriver"/>
+        </property>
+        <!--使用XStream的注解定义xml转换规则，使用XStream注解的类在此声明-->
+        <property name="annotatedClasses">
+            <list>
+                <value>com.smart.chapter17.domain.User</value>
             </list>
         </property>
     </bean>

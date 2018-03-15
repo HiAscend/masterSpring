@@ -9,6 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
@@ -185,6 +188,22 @@ public class UserController {
         Resource resource = new ClassPathResource("image.png");
         return IOUtils.toByteArray(resource.getInputStream());
     }
+
+    @RequestMapping(path = "/handle44/{imageId}")
+    public ResponseEntity<byte[]> handle44(@PathVariable("imageId") String imageId) throws IOException {
+        LOG.debug("load image id:{}", imageId);
+        Resource resource = new ClassPathResource("/image.png");
+        byte[] fileData = FileCopyUtils.copyToByteArray(resource.getFile());
+        return new ResponseEntity<>(fileData, HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/handle51")
+    public ResponseEntity<User> handle51(HttpEntity<User> requestEntity) {
+        User user = requestEntity.getBody();
+        user.setUserId("10086");
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
 
 
 }
