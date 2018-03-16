@@ -33,7 +33,7 @@
         <util.servlet.jsp-api.version>2.3.1</util.servlet.jsp-api.version>
         <util.servlet.jstl.version>1.2</util.servlet.jstl.version>
         <util.servlet.el-api.version>3.0.0</util.servlet.el-api.version>
-
+        <util.thoughworks.xstream.version>1.4.9</util.thoughworks.xstream.version>
         <!--log-->
         <log.slf4j.version>1.7.24</log.slf4j.version>
         <log.log4j2.version>2.8.2</log.log4j2.version>
@@ -76,6 +76,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+            <version>${core.spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
             <version>${core.spring.version}</version>
         </dependency>
         <dependency>
@@ -191,6 +196,12 @@
             <artifactId>javax.el-api</artifactId>
             <version>${util.servlet.el-api.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>${util.thoughworks.xstream.version}</version>
+        </dependency>
+
         <!--util end-->
         <!--log start-->
         <dependency>
