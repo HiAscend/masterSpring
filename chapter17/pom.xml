@@ -30,10 +30,14 @@
         <!--util-->
         <util.commons-lang3.version>3.6</util.commons-lang3.version>
         <util.commons-io.version>2.6</util.commons-io.version>
+        <util.commons-fileupload.version>1.3.3</util.commons-fileupload.version>
         <util.servlet.jsp-api.version>2.3.1</util.servlet.jsp-api.version>
         <util.servlet.jstl.version>1.2</util.servlet.jstl.version>
         <util.servlet.el-api.version>3.0.0</util.servlet.el-api.version>
         <util.thoughworks.xstream.version>1.4.9</util.thoughworks.xstream.version>
+        <util.xmlbeans.version>2.6.0</util.xmlbeans.version>
+        <util.jackson-databind.version>2.8.10</util.jackson-databind.version>
+        <util.jackson-dataformat-xml.version>2.8.10</util.jackson-dataformat-xml.version>
         <!--log-->
         <log.slf4j.version>1.7.24</log.slf4j.version>
         <log.log4j2.version>2.8.2</log.log4j2.version>
@@ -180,7 +184,11 @@
             <artifactId>commons-io</artifactId>
             <version>${util.commons-io.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${util.commons-fileupload.version}</version>
+        </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
@@ -196,11 +204,48 @@
             <artifactId>javax.el-api</artifactId>
             <version>${util.servlet.el-api.version}</version>
         </dependency>
+        <!--springmvc处理xml或者json请求和返回的时候需要-->
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
             <version>${util.thoughworks.xstream.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+            <version>${util.xmlbeans.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${util.jackson-databind.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${util.jackson-dataformat-xml.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.castor</groupId>
+            <artifactId>castor-xml</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jibx</groupId>
+            <artifactId>jibx-run</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+
 
         <!--util end-->
         <!--log start-->

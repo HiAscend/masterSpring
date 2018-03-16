@@ -4,8 +4,7 @@ import com.smart.chapter17.domain.User;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.oxm.xstream.XStreamMarshaller;
@@ -13,9 +12,11 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.util.Collections;
 
 /**
  * UserControllerTest
@@ -73,7 +74,19 @@ public class UserControllerTest {
         user.setRealName("汤姆");
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_XML);
+        // httpHeaders.setContentType(MediaType.APPLICATION_XML);
+        // httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_XML));
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON_UTF8));
+        HttpEntity<User> requestEntity = new HttpEntity<User>(user, httpHeaders);
+        ResponseEntity<User> responseEntity = restTemplate.exchange("http://localhost:8080/chapter17/user/handle51.html", HttpMethod.POST, requestEntity, User.class);
+
+        User responseUser = responseEntity.getBody();
+        System.out.println("responseUser = " + responseUser);
+        Assert.assertNotNull(responseEntity);
+        Assert.assertEquals("10086", responseUser.getUserId());
+        Assert.assertEquals("tom", responseUser.getUserName());
+        Assert.assertEquals("汤姆", responseUser.getRealName());
 
     }
 
@@ -94,5 +107,11 @@ public class UserControllerTest {
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
         restTemplate.getMessageConverters().add(jsonConverter);
         return restTemplate;
+    }
+
+    @Test
+    public void t() {
+        System.out.println(MediaType.APPLICATION_XML);
+        System.out.println(MediaType.valueOf("application/xml;UTF-8"));
     }
 }

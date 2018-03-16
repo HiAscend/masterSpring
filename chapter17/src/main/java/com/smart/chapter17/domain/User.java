@@ -1,5 +1,8 @@
 package com.smart.chapter17.domain;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 /**
@@ -8,12 +11,19 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
  * @author ascend
  * @date 2018/03/08 21:55
  */
+@XStreamAlias("message")
 public class User {
+    @XStreamAlias("id")
+    @XStreamAsAttribute
     private String userId;
+    @XStreamAsAttribute
     private String userName;
+    @XStreamAsAttribute
     private String password;
+    @XStreamAsAttribute
     private String realName;
 
+    @XStreamOmitField
     private Dept dept;
 
     public String getUserId() {

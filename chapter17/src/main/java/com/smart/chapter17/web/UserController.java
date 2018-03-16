@@ -2,7 +2,6 @@ package com.smart.chapter17.web;
 
 import com.smart.chapter17.UserService;
 import com.smart.chapter17.domain.User;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -210,9 +209,11 @@ public class UserController {
 
     @RequestMapping(path = "/handle51")
     public ResponseEntity<User> handle51(HttpEntity<User> requestEntity) {
+        LOG.debug("contentLength:{}", requestEntity.getHeaders().getContentLength());
+        LOG.debug("body:{}", requestEntity.getBody());
         User user = requestEntity.getBody();
         user.setUserId("10086");
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
 }
