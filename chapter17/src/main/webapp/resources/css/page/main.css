@@ -1,0 +1,34 @@
+/*顶部距浏览器两边的间距*/
+.main-head .container{
+    width: 100%;
+}
+.main-head .container .navbar{
+    margin-bottom: 5px;
+}
+/*公司logo设置*/
+.main-head #companyLogo{
+    font-size: 18px;
+}
+/*无人机监控系统字体位置*/
+.main-head .col-xs-8{
+    text-align: center;
+}
+.main-head .col-xs-8 .navbar-text{
+    float: none;
+    font-family: "Microsoft YaHei";
+    font-size: 22px;
+}
+.main-head .col-xs-8 .navbar-text{
+    margin: 5px auto;
+}
+/*弹出窗口设置*/
+#operationModal iframe{
+    width: 597px;
+    height: 400px;
+}
+#operationModal .modal-content{
+    width: 600px;
+    height: 400px;
+}
+
+

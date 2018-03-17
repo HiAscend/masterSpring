@@ -74,12 +74,13 @@ public class UserControllerTest {
         user.setRealName("汤姆");
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        // httpHeaders.setContentType(MediaType.APPLICATION_XML);
-        // httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_XML));
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON_UTF8));
+        httpHeaders.setContentType(MediaType.APPLICATION_XML);
+        httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_XML));
+        // httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        // httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<User> requestEntity = new HttpEntity<User>(user, httpHeaders);
-        ResponseEntity<User> responseEntity = restTemplate.exchange("http://localhost:8080/chapter17/user/handle51.html", HttpMethod.POST, requestEntity, User.class);
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity("http://localhost:8080/chapter17/user/handle51.html", requestEntity, User.class);
+        // ResponseEntity<User> responseEntity = restTemplate.exchange("http://localhost:8080/chapter17/user/handle51.html", HttpMethod.POST, requestEntity, User.class);
 
         User responseUser = responseEntity.getBody();
         System.out.println("responseUser = " + responseUser);

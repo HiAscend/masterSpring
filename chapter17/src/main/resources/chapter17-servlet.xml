@@ -7,7 +7,26 @@
     <context:component-scan base-package="com.smart.chapter17.web"/>
     <!--这个一定要填写-->
     <!--The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!--默认四个-->
+            <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="writeAcceptCharset" value="false"/>
+            </bean>
+            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter"/>-->
+            <!--新增-->
+            <!--<bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"/>-->
+            <!--处理xml格式的请求或相应信息-->
+            <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+                <property name="marshaller" ref="xmlMarshaller"/>
+                <property name="unmarshaller" ref="xmlMarshaller"/>
+            </bean>
+            <!--处理json格式的请求或相应消息-->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
     <!--<mvc:default-servlet-handler/>-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
@@ -16,28 +35,28 @@
 
     <!--RequestMappingHandlerAdapter，默认有四个MessageConverter-->
     <!--若需要装配其他类型的HttpMessageConverter，如下。如果再配置文件中显示的定义了RequestMappingHandlerAdapter则springMVC会覆盖默认的RequestMappingHandlerAdapter-->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
-                <!--默认四个-->
+                &lt;!&ndash;默认四个&ndash;&gt;
                 <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                     <property name="writeAcceptCharset" value="false"/>
                 </bean>
                 <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
                 <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
                 <bean class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter"/>
-                <!--新增-->
+                &lt;!&ndash;新增&ndash;&gt;
                 <bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"/>
-                <!--处理xml格式的请求或相应信息-->
+                &lt;!&ndash;处理xml格式的请求或相应信息&ndash;&gt;
                 <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
                     <property name="marshaller" ref="xmlMarshaller"/>
                     <property name="unmarshaller" ref="xmlMarshaller"/>
                 </bean>
-                <!--处理json格式的请求或相应消息-->
+                &lt;!&ndash;处理json格式的请求或相应消息&ndash;&gt;
                 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
             </list>
         </property>
-    </bean>
+    </bean>-->
     <!--声明Marshaller，使用XStream技术-->
     <bean id="xmlMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
         <property name="streamDriver">
@@ -52,7 +71,7 @@
         </property>
     </bean>
 
-    <bean id="contentNegotiationManager"
+    <!--<bean id="contentNegotiationManager"
           class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean"
           p:ignoreAcceptHeader="true"
           p:favorPathExtension="false"
@@ -66,5 +85,5 @@
                 json=application/json
             </value>
         </property>
-    </bean>
+    </bean>-->
 </beans>

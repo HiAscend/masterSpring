@@ -1,6 +1,7 @@
 package com.smart.chapter17.web;
 
 import com.smart.chapter17.UserService;
+import com.smart.chapter17.domain.Address;
 import com.smart.chapter17.domain.User;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -21,6 +23,7 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.Response;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -213,7 +216,17 @@ public class UserController {
         LOG.debug("body:{}", requestEntity.getBody());
         User user = requestEntity.getBody();
         user.setUserId("10086");
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        // return user;
+        ResponseEntity<User> responseEntity = new ResponseEntity<>(user, HttpStatus.OK);
+        return responseEntity;
     }
 
+    @RequestMapping(path = "/handle511")
+    public ResponseEntity<Address> handle511() {
+        LOG.debug("UserController.handle511...");
+        Address address = new Address();
+        address.setTel("10086");
+        address.setZoneCode("100000");
+        return new ResponseEntity<>(address, HttpStatus.OK);
+    }
 }

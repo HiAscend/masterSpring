@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--core-->
-        <core.spring.version>4.3.12.RELEASE</core.spring.version>
+        <core.spring.version>4.2.9.RELEASE</core.spring.version>
         <core.aopalliance.version>1.0</core.aopalliance.version>
         <core.cglib.version>3.2.5</core.cglib.version>
         <core.asm.version>6.0</core.asm.version>
@@ -188,6 +188,12 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>${util.commons-fileupload.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-io</artifactId>
+                    <groupId>commons-io</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -225,11 +231,13 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>${util.jackson-dataformat-xml.version}</version>
         </dependency>
-        <dependency>
+
+
+        <!--<dependency>
             <groupId>org.codehaus.castor</groupId>
             <artifactId>castor-xml</artifactId>
             <version>1.4.1</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.jibx</groupId>
             <artifactId>jibx-run</artifactId>

@@ -1,0 +1,26 @@
+
+我把资源的管理做了一下整理，便于开发。不然各个框架的资源文件散落开来，容易引起冲突，难以维护！！误删！！
+resources   --资源总目录
+    css     --自定义css总目录，不包含第三方框架的css
+        common  --页面中通用的css，用于重用
+        page    --自己写的页面对应的css，建议与自己写的页面命名相同，或者位于相同的相对路径
+        ...                     --更多的请自行添加
+    frame   --第三方的框架，以框架名为目录，便于框架的变化和维护
+        例如
+        bootstrap-3.3.7-dist    --bootstrap开发包，包含版本等信息
+        chubby-stacks           --bootstrap的一个主题框架，若主题更改可以随时切换
+        jquery                  --jquery的各个版本资源，我目前只加入了两个版本，请根据需求加入
+        knockoutjs              --knockoutjs所依赖的资源，也便于框架的迁移和升级
+        vue                     --vuejs对应的资源包，当前版本为2.2.6
+        My97DatePicker          --日历控件
+        province-city-district  --省市区三级联动插件
+        ...                     --更多的请自行添加
+    image   --图片资源
+        common                  --通用图片
+        page                    --页面中自己用到的
+        ...                     --更多的请自行添加
+    js      --js文件
+        common                  --通用js，比如js的工具类
+        compatible              --浏览器兼容处理，不要动
+        page                    --页面中自己用到的
+        ...                     --更多的请自行添加

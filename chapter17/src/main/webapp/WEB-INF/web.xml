@@ -14,7 +14,7 @@
     <!--5. context-param*-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:/applicationContext.xml</param-value>
+        <param-value>classpath:/applicationContext.xml;classpath:/chapter17-servlet.xml</param-value>
     </context-param>
     <!--6. filter*-->
 
@@ -37,16 +37,20 @@
         <servlet-name>chapter17</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <!--默认加载的文件是，chapter17-servlet.xml-->
-        <!--<init-param>
+        <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/chapter17-servlet.xml</param-value>
-        </init-param>-->
+            <param-value></param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <!--10.servlet-mapping*-->
     <servlet-mapping>
         <servlet-name>chapter17</servlet-name>
         <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>chapter17</servlet-name>
+        <url-pattern>/a/*</url-pattern>
     </servlet-mapping>
     <!--11.session-config?-->
     <!--12.mime-mapping*-->
