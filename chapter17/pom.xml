@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--core-->
-        <core.spring.version>4.2.9.RELEASE</core.spring.version>
+        <core.spring.version>4.3.12.RELEASE</core.spring.version>
         <core.aopalliance.version>1.0</core.aopalliance.version>
         <core.cglib.version>3.2.5</core.cglib.version>
         <core.asm.version>6.0</core.asm.version>
@@ -231,6 +231,12 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>${util.jackson-dataformat-xml.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/stax/stax -->
+        <dependency>
+            <groupId>stax</groupId>
+            <artifactId>stax</artifactId>
+            <version>1.2.0</version>
+        </dependency>
 
 
         <!--<dependency>
@@ -238,7 +244,7 @@
             <artifactId>castor-xml</artifactId>
             <version>1.4.1</version>
         </dependency>-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.jibx</groupId>
             <artifactId>jibx-run</artifactId>
             <version>1.2.6</version>
@@ -252,7 +258,7 @@
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>
-        </dependency>
+        </dependency>-->
 
 
         <!--util end-->

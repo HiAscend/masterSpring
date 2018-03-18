@@ -13,17 +13,17 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
  */
 @XStreamAlias("message")
 public class User {
-    @XStreamAlias("id")
-    @XStreamAsAttribute
+
+
     private String userId;
-    @XStreamAsAttribute
+
     private String userName;
-    @XStreamAsAttribute
+
     private String password;
-    @XStreamAsAttribute
+
     private String realName;
 
-    @XStreamOmitField
+
     private Dept dept;
 
     public String getUserId() {

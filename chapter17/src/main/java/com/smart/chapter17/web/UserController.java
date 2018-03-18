@@ -216,9 +216,7 @@ public class UserController {
         LOG.debug("body:{}", requestEntity.getBody());
         User user = requestEntity.getBody();
         user.setUserId("10086");
-        // return user;
-        ResponseEntity<User> responseEntity = new ResponseEntity<>(user, HttpStatus.OK);
-        return responseEntity;
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @RequestMapping(path = "/handle511")

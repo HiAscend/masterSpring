@@ -1,12 +1,19 @@
 package com.smart.chapter17.web;
 
 import com.smart.chapter17.domain.User;
+import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.*;
+import org.springframework.http.converter.ByteArrayHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.ResourceHttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter;
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
+import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.oxm.xstream.XStreamMarshaller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.LinkedMultiValueMap;
@@ -15,8 +22,11 @@ import org.springframework.web.client.RestTemplate;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import javax.xml.transform.Source;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * UserControllerTest
@@ -65,6 +75,19 @@ public class UserControllerTest {
     }
 
     @Test
+    public void test() {
+        XStream xStream = new XStream();
+        xStream.processAnnotations(User.class);
+        // <User><userId/><userName>tom</userName><password>123456</password><realName>汤姆</realName><dept/></User>
+        User user = new User();
+        user.setUserName("tom");
+        user.setPassword("123456");
+        user.setRealName("汤姆");
+        String s = xStream.toXML(user);
+        System.out.println("s = " + s);
+    }
+
+    @Test
     public void testHandle51WithXml() {
         RestTemplate restTemplate = buildRestTemplate();
 
@@ -78,9 +101,8 @@ public class UserControllerTest {
         httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_XML));
         // httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         // httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        HttpEntity<User> requestEntity = new HttpEntity<User>(user, httpHeaders);
-        ResponseEntity<User> responseEntity = restTemplate.postForEntity("http://localhost:8080/chapter17/user/handle51.html", requestEntity, User.class);
-        // ResponseEntity<User> responseEntity = restTemplate.exchange("http://localhost:8080/chapter17/user/handle51.html", HttpMethod.POST, requestEntity, User.class);
+        HttpEntity<User> requestEntity = new HttpEntity<>(user, httpHeaders);
+        ResponseEntity<User> responseEntity = restTemplate.exchange("http://localhost:8080/chapter17/a/user/handle51", HttpMethod.POST, requestEntity, User.class);
 
         User responseUser = responseEntity.getBody();
         System.out.println("responseUser = " + responseUser);
@@ -102,11 +124,22 @@ public class UserControllerTest {
         xmlConverter.setMarshaller(xStreamMarshaller);
         xmlConverter.setUnmarshaller(xStreamMarshaller);
 
-        restTemplate.getMessageConverters().add(xmlConverter);
+        // restTemplate.getMessageConverters().add(xmlConverter);
 
         // 创建MappingJacksonHttpMessageConverter
-        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
-        restTemplate.getMessageConverters().add(jsonConverter);
+        // MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
+        // restTemplate.getMessageConverters().add(jsonConverter);
+        List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
+
+        messageConverters.add(new ByteArrayHttpMessageConverter());
+        messageConverters.add(new StringHttpMessageConverter());
+        messageConverters.add(new ResourceHttpMessageConverter());
+        messageConverters.add(new SourceHttpMessageConverter<Source>());
+        messageConverters.add(new AllEncompassingFormHttpMessageConverter());
+
+        messageConverters.add(xmlConverter);
+
+        restTemplate.setMessageConverters(messageConverters);
         return restTemplate;
     }
 
