@@ -10,7 +10,6 @@ import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter;
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.http.converter.xml.SourceHttpMessageConverter;
@@ -97,6 +96,7 @@ public class UserControllerTest {
         user.setRealName("汤姆");
 
         HttpHeaders httpHeaders = new HttpHeaders();
+        // 其中xml测试不通过的原因是RestTemplate会根据类路径下的jar加载一些指定的Converter,且会按照加载的顺序发送请求
         httpHeaders.setContentType(MediaType.APPLICATION_XML);
         httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_XML));
         // httpHeaders.setContentType(MediaType.APPLICATION_JSON);

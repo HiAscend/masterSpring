@@ -39,6 +39,7 @@
         <!--默认加载的文件是，chapter17-servlet.xml-->
         <init-param>
             <param-name>contextConfigLocation</param-name>
+            <!--什么都不写表示使用context-param中的配置-->
             <param-value></param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
