@@ -18,6 +18,7 @@
 </head>
 <body>
 <%--访问Model中的属性--%>
-恭喜，用户${user.userName}创建成功。
+恭喜，用户${user.userName}创建成功，用户的id为${user.userId}。
+恭喜，用户${myUser.userName}创建成功，用户的id为${myUser.userId}。
 </body>
 </html>

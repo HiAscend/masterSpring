@@ -9,8 +9,6 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.client.AsyncRestTemplate;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * UserController2Test
  *
@@ -38,6 +36,6 @@ public class UserController2Test {
             }
         });
         LOG.debug("no wait");
-        TimeUnit.SECONDS.sleep(15);
+        // TimeUnit.SECONDS.sleep(15);
     }
 }

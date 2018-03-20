@@ -3,6 +3,8 @@ package com.smart.chapter17.web;
 import com.smart.chapter17.domain.User;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.*;
@@ -34,6 +36,7 @@ import java.util.List;
  * @date 2018/03/14 22:14
  */
 public class UserControllerTest {
+    private static final Logger LOG = LoggerFactory.getLogger(UserControllerTest.class);
 
     @SuppressWarnings("Duplicates")
     @Test
@@ -144,8 +147,13 @@ public class UserControllerTest {
     }
 
     @Test
-    public void t() {
-        System.out.println(MediaType.APPLICATION_XML);
-        System.out.println(MediaType.valueOf("application/xml;UTF-8"));
+    public void testHandle61() {
+        RestTemplate restTemplate = new RestTemplate();
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("userName", "damon");
+        map.add("password", "123456");
+        String result = restTemplate.postForObject("http://localhost:8080/chapter17/user/handle61.html", map, String.class);
+        LOG.debug("result:{}", result);
+
     }
 }

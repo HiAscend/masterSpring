@@ -11,7 +11,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -23,7 +22,6 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -227,4 +225,23 @@ public class UserController {
         address.setZoneCode("100000");
         return new ResponseEntity<>(address, HttpStatus.OK);
     }
+
+    @RequestMapping(path = "/handle61")
+    public String handle61(@ModelAttribute("user") User user) {
+        user.setUserId("10000");
+        return "/user/createSuccess";
+    }
+
+    // 方法级别上的@ModelAttribute, 并将方法的返回值添加到模型中
+
+    @ModelAttribute(value = "myUser")
+    public User getUser() {
+        User user = new User();
+        user.setUserName("modelAttribute");
+        return user;
+    }
+
+
+
+
 }
