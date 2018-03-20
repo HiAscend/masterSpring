@@ -43,6 +43,8 @@
             <param-value></param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        <!-- springmvc的异步支持 -->
+        <async-supported>true</async-supported>
     </servlet>
     <!--10.servlet-mapping*-->
     <servlet-mapping>
