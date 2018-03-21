@@ -21,5 +21,6 @@ userName:${myUser.userName}
 userId:${myUser.userId}
 password:${myUser.password}
 realName:${myUser.realName}
+testAttr:${testAttr}
 </body>
 </html>

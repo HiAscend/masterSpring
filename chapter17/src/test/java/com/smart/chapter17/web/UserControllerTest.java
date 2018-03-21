@@ -25,6 +25,8 @@ import org.testng.annotations.Test;
 
 import javax.xml.transform.Source;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -162,6 +164,30 @@ public class UserControllerTest {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("userId", "10086");
         String html = restTemplate.postForObject("http://localhost:8080/chapter17/user/handle62.html", map, String.class);
+        LOG.debug("html:{}\n", html);
+    }
+
+    @Test
+    public void testHandle63() {
+        RestTemplate restTemplate = new RestTemplate();
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("userId", "10086");
+        map.add("password", "123456");
+        String html = restTemplate.postForObject("http://localhost:8080/chapter17/user/handle63.html", map, String.class);
+        LOG.debug("html:{}\n", html);
+    }
+
+    @Test
+    public void testHandle71() throws URISyntaxException {
+        RestTemplate restTemplate = new RestTemplate();
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("userName", "tom");
+        map.add("password", "123456");
+        map.add("age", "45");
+        URI uri = restTemplate.postForLocation("http://localhost:8080/chapter17/user/handle71.html", map);
+        LOG.debug("uri:{}", uri);
+        URI handle72URI = new URI("http://localhost:8080" + uri.toString());
+        String html = restTemplate.postForObject(handle72URI, map, String.class);
         LOG.debug("html:{}\n", html);
     }
 }

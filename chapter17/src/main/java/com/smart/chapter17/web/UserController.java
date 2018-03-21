@@ -13,8 +13,10 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
@@ -24,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Objects;
 
 /**
  * UserController
@@ -33,6 +36,7 @@ import java.io.OutputStream;
  */
 @Controller
 @RequestMapping("/user")
+@SessionAttributes(value = "myUser")
 public class UserController {
     private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
     private UserService userService;
@@ -256,5 +260,31 @@ public class UserController {
         return "/user/showUser";
     }
 
+    @RequestMapping(path = "/handle63")
+    public String handle63(ModelMap modelMap) {
+        modelMap.addAttribute("testAttr", "value1");
+        User user = (User) modelMap.get("myUser");
+        user.setUserName("handle63");
+        return "/user/showUser";
+    }
+
+    @RequestMapping(path = "/handle71")
+    public String handle71(@ModelAttribute("myUser") User user) {
+        user.setUserName("handle71");
+        return "redirect:/user/handle72.html";
+    }
+
+    @RequestMapping(path = "/handle72")
+    public String handle72(ModelMap modelMap, SessionStatus sessionStatus) {
+        User user = (User) modelMap.get("myUser");
+        if (Objects.nonNull(user)) {
+            user.setUserName("handle72");
+            // 让spring mvc清楚本处理器对应的会话属性
+            sessionStatus.setComplete();
+        }
+        modelMap.addAttribute("user", user);
+        return "/user/showUser";
+
+    }
 
 }
