@@ -237,11 +237,24 @@ public class UserController {
     @ModelAttribute(value = "myUser")
     public User getUser() {
         User user = new User();
+        user.setUserId("100");
         user.setUserName("modelAttribute");
+        user.setPassword("123456");
         return user;
     }
 
-
+    /**
+     * 由于handle62除方法使用了入参级的@ModelAttribute注解，且属性名和上面的@ModelAttribute的属性名相同，这时springMVC会将上面的模型先赋值给
+     * 本方法的user，然后再根据http请求对user进行填充覆盖，得到一个整合版本的user对象
+     *
+     * @param user User
+     * @return String
+     */
+    @RequestMapping(path = "/handle62")
+    public String handle62(@ModelAttribute("myUser") User user) {
+        user.setUserName("handle62");
+        return "/user/showUser";
+    }
 
 
 }

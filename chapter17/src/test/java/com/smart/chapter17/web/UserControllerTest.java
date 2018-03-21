@@ -154,6 +154,14 @@ public class UserControllerTest {
         map.add("password", "123456");
         String result = restTemplate.postForObject("http://localhost:8080/chapter17/user/handle61.html", map, String.class);
         LOG.debug("result:{}", result);
+    }
 
+    @Test
+    public void testHandle62() {
+        RestTemplate restTemplate = new RestTemplate();
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("userId", "10086");
+        String html = restTemplate.postForObject("http://localhost:8080/chapter17/user/handle62.html", map, String.class);
+        LOG.debug("html:{}\n", html);
     }
 }
