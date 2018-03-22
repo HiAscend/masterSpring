@@ -3,18 +3,21 @@ package com.smart.chapter17.web;
 import com.smart.chapter17.UserService;
 import com.smart.chapter17.domain.Address;
 import com.smart.chapter17.domain.User;
+import com.smart.chapter17.domain.UserEditor;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
@@ -44,6 +47,13 @@ public class UserController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        LOG.debug("UserController.initBinder...");
+        binder.registerCustomEditor(User.class, new UserEditor());
+        binder.addCustomFormatter(new DateFormatter("yyyy-MM-dd HH:mm:ss"));
     }
 
     @RequestMapping(method = {RequestMethod.POST})
@@ -284,7 +294,11 @@ public class UserController {
         }
         modelMap.addAttribute("user", user);
         return "/user/showUser";
-
     }
 
+    @RequestMapping(path = "/handle81")
+    public String handle81(@RequestParam("user") User user, ModelMap modelMap) {
+        modelMap.put("user", user);
+        return "/user/showUser";
+    }
 }

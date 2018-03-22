@@ -190,4 +190,16 @@ public class UserControllerTest {
         String html = restTemplate.postForObject(handle72URI, map, String.class);
         LOG.debug("html:{}\n", html);
     }
+
+    @Test
+    public void testHandle81() {
+        RestTemplate restTemplate = new RestTemplate();
+        MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
+        form.add("user", "tom:1234:tomson");
+        String html = restTemplate.postForObject("http://localhost:8080/chapter17/user/handle81.html", form, String.class);
+        LOG.debug("html:{}\n", html);
+        Assert.assertNotNull(html);
+        Assert.assertTrue(html.contains("tom"));
+    }
+
 }

@@ -17,6 +17,12 @@
     <title>用户信息</title>
 </head>
 <body>
+user
+userName:${user.userName}
+userId:${user.userId}
+password:${user.password}
+realName:${user.realName}
+myUser
 userName:${myUser.userName}
 userId:${myUser.userId}
 password:${myUser.password}
