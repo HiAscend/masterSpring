@@ -202,4 +202,29 @@ public class UserControllerTest {
         Assert.assertTrue(html.contains("tom"));
     }
 
+    // 有错误
+    @Test
+    public void testHandle82() {
+        RestTemplate restTemplate = new RestTemplate();
+        MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
+        form.add("userName", "tom");
+        form.add("password", "123456");
+        form.add("age", "45");
+        form.add("birthday", "2018-03-24");
+        form.add("salary", "4,500.00");
+        String html = restTemplate.postForObject("http://localhost:8080/chapter17/user/handle82.html", form, String.class);
+        Assert.assertNotNull(html);
+        Assert.assertTrue(html.contains("tom"));
+    }
+
+    @Test
+    public void testHandle821() {
+        RestTemplate restTemplate = new RestTemplate();
+        MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
+        form.add("tel", "10086");
+        form.add("zoneCode", "100000");
+        form.add("createTime", "2018-03-24");
+        String html = restTemplate.postForObject("http://localhost:8080/chapter17/user/handle821.html", form, String.class);
+        LOG.debug("html:{}\n", html);
+    }
 }

@@ -38,6 +38,8 @@
         <util.xmlbeans.version>2.6.0</util.xmlbeans.version>
         <util.jackson-databind.version>2.8.10</util.jackson-databind.version>
         <util.jackson-dataformat-xml.version>2.8.10</util.jackson-dataformat-xml.version>
+        <util.joda-time.version>2.9.9</util.joda-time.version>
+        <util.hibernate-validator.version>5.1.3.Final</util.hibernate-validator.version>
         <!--log-->
         <log.slf4j.version>1.7.24</log.slf4j.version>
         <log.log4j2.version>2.8.2</log.log4j2.version>
@@ -237,29 +239,26 @@
             <artifactId>stax</artifactId>
             <version>1.2.0</version>
         </dependency>
-
-
-        <!--<dependency>
-            <groupId>org.codehaus.castor</groupId>
-            <artifactId>castor-xml</artifactId>
-            <version>1.4.1</version>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>org.jibx</groupId>
-            <artifactId>jibx-run</artifactId>
-            <version>1.2.6</version>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${util.joda-time.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-            <version>1.9.13</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${util.hibernate-validator.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>classmate</artifactId>
+                    <groupId>com.fasterxml</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jboss-logging</artifactId>
+                    <groupId>org.jboss.logging</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>-->
-
 
         <!--util end-->
         <!--log start-->

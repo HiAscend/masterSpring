@@ -1,9 +1,16 @@
 package com.smart.chapter17.domain;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
-import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import java.util.Date;
 
 /**
  * User
@@ -13,18 +20,24 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
  */
 @XStreamAlias("message")
 public class User {
-
-
     private String userId;
-
+    @Pattern(regexp = "w{4,30}")
     private String userName;
-
+    @Pattern(regexp = "S{6,30}")
     private String password;
-
+    @Length(min = 2, max = 100)
     private String realName;
 
+    @Past
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
 
+    @DecimalMin(value = "1000.00")
+    @DecimalMax(value = "100000.00")
+    @NumberFormat(pattern = "#,###.##")
+    private long salary;
     private Dept dept;
+
 
     public String getUserId() {
         return userId;
@@ -64,6 +77,22 @@ public class User {
 
     public void setDept(Dept dept) {
         this.dept = dept;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public long getSalary() {
+        return salary;
+    }
+
+    public void setSalary(long salary) {
+        this.salary = salary;
     }
 
     @Override

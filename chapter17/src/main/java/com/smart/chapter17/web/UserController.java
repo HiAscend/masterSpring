@@ -10,13 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.format.datetime.DateFormatter;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
@@ -27,6 +27,7 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Objects;
@@ -53,7 +54,7 @@ public class UserController {
     public void initBinder(WebDataBinder binder) {
         LOG.debug("UserController.initBinder...");
         binder.registerCustomEditor(User.class, new UserEditor());
-        binder.addCustomFormatter(new DateFormatter("yyyy-MM-dd HH:mm:ss"));
+        // binder.addCustomFormatter(new DateFormatter("yyyy-MM-dd HH:mm:ss"));
     }
 
     @RequestMapping(method = {RequestMethod.POST})
@@ -300,5 +301,25 @@ public class UserController {
     public String handle81(@RequestParam("user") User user, ModelMap modelMap) {
         modelMap.put("user", user);
         return "/user/showUser";
+    }
+
+    @RequestMapping(path = "/handle82")
+    public String handle82(@ModelAttribute("user") User user) {
+        return "/user/showUser";
+    }
+
+    @RequestMapping(path = "/handle821")
+    public String handle821(Address address) {
+        LOG.debug("address:{}", address);
+        return "/user/showUser";
+    }
+
+    @RequestMapping(path = "/handle91")
+    public String handle91(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/user/register3";
+        }else {
+            return "/user/showUser";
+        }
     }
 }
