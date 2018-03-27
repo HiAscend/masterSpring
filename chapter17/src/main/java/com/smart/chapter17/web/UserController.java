@@ -55,6 +55,7 @@ public class UserController {
         LOG.debug("UserController.initBinder...");
         binder.registerCustomEditor(User.class, new UserEditor());
         // binder.addCustomFormatter(new DateFormatter("yyyy-MM-dd HH:mm:ss"));
+        binder.addValidators(new UserValidator());
     }
 
     @RequestMapping(method = {RequestMethod.POST})
