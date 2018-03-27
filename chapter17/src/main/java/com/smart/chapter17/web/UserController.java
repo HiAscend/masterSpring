@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
@@ -55,7 +56,9 @@ public class UserController {
         LOG.debug("UserController.initBinder...");
         binder.registerCustomEditor(User.class, new UserEditor());
         // binder.addCustomFormatter(new DateFormatter("yyyy-MM-dd HH:mm:ss"));
-        binder.addValidators(new UserValidator());
+        // binder.addValidators(new UserValidator());
+        // 两者的意义不同，addValidator 则会继续使用jsr303进行校验，setValidator则不会使用注解校验，即使添加上@Valid
+        // binder.setValidator(new UserValidator());
     }
 
     @RequestMapping(method = {RequestMethod.POST})
@@ -319,6 +322,20 @@ public class UserController {
     public String handle91(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/user/register3";
+        }else {
+            return "/user/showUser";
+        }
+    }
+
+    @RequestMapping(path = "/handle92")
+    public String handle92(@ModelAttribute("user") User user, BindingResult bindingResult) {
+        // 使用校验器工具类进行校验
+        ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "userName", "required");
+        /*if ("aaa".equalsIgnoreCase(user.getUserName())) {
+            bindingResult.rejectValue("userName", "reserved");
+        }*/
+        if (bindingResult.hasErrors()) {
+            return "/user/register4";
         }else {
             return "/user/showUser";
         }
