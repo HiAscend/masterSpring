@@ -86,6 +86,11 @@
         </property>
     </bean>
 
+    <!--国际化资源-->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="i18n/message"/>
+    </bean>
+
     <!--<bean id="contentNegotiationManager"
           class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean"
           p:ignoreAcceptHeader="true"
