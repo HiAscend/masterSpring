@@ -88,7 +88,12 @@
 
     <!--国际化资源-->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="i18n/message"/>
+        <property name="basenames">
+            <array>
+                <value>i18n.message</value>
+                <value>i18n.content</value>
+            </array>
+        </property>
     </bean>
 
     <!--<bean id="contentNegotiationManager"

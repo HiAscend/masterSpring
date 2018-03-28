@@ -31,7 +31,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * UserController
@@ -339,5 +339,24 @@ public class UserController {
         }else {
             return "/user/showUser";
         }
+    }
+
+    @RequestMapping(path = "/showUserList")
+    public String showUserList(ModelMap mm) {
+        Calendar calendar = new GregorianCalendar();
+        List<User> userList = new ArrayList<>();
+        User user1 = new User();
+        user1.setUserName("tom");
+        user1.setRealName("汤姆");
+        calendar.set(1980, Calendar.FEBRUARY, 1);
+        user1.setBirthday(calendar.getTime());
+        User user2 = new User();
+        user2.setUserName("john");
+        user2.setRealName("约翰");
+        user2.setBirthday(calendar.getTime());
+        userList.add(user1);
+        userList.add(user2);
+        mm.addAttribute("userList", userList);
+        return "/user/userList";
     }
 }
