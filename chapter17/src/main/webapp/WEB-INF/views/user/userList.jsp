@@ -22,7 +22,7 @@
 <body>
 <fmt:message key="user.userList.title"/>
 <table>
-    <c:forEach items="userList" var="user">
+    <c:forEach items="${userList}" var="user">
         <tr>
             <td>
                 <a href="<c:url value="/user/showUser/${user.userName}.html"/>">${user.userName}</a>
@@ -36,5 +36,6 @@
         </tr>
     </c:forEach>
 </table>
+
 </body>
 </html>

@@ -357,6 +357,7 @@ public class UserController {
         userList.add(user1);
         userList.add(user2);
         mm.addAttribute("userList", userList);
+        mm.addAttribute("car", "benz");
         return "/user/userList";
     }
 }
