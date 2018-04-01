@@ -28,10 +28,10 @@
                 <a href="<c:url value="/user/showUser/${user.userName}.html"/>">${user.userName}</a>
             </td>
             <td>
-                    ${user.realName}
+                ${user.realName}
             </td>
             <td>
-                <fmt:formatDate value="${topic.createDate}" pattern="yyyy-MM-dd"/>
+                <fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd"/>
             </td>
         </tr>
     </c:forEach>
