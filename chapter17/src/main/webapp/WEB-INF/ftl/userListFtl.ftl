@@ -5,7 +5,7 @@
 </head>
 <body>
         <@spring.message "user.userList.title"/>
-<table>
+    <table>
            <#list userList as user>
                <tr>
                    <td>
