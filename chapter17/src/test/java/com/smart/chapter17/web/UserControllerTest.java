@@ -225,6 +225,7 @@ public class UserControllerTest {
         form.add("zoneCode", "100000");
         form.add("createTime", "2018-03-24");
         String html = restTemplate.postForObject("http://localhost:8080/chapter17/user/handle821.html", form, String.class);
+        System.out.println("");
         LOG.debug("html:{}\n", html);
     }
 }

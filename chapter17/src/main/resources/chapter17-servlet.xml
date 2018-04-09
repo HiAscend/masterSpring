@@ -9,7 +9,7 @@
     <!--除此之外，该标签会注册一个默认的ConversionService,即FormattingConversionServiceFactoryBean-->
     <!--The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler-->
     <!--会默认装配org.springframework.validation.beanvalidation.LocalValidDatorFactoryBean-->
-    <mvc:annotation-driven >
+    <mvc:annotation-driven>
         <!--<mvc:message-converters>
             &lt;!&ndash;默认四个&ndash;&gt;
             &lt;!&ndash;<bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -130,8 +130,23 @@
 
     <!--Excel及PDF视图解析器配置-->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-        <property name="order" value="6"/>
+        <property name="order" value="10"/>
     </bean>
     <bean id="userListExcel" class="com.smart.chapter17.web.UserListExcelView"/>
     <bean id="userListPdf" class="com.smart.chapter17.web.UserListPdfView"/>
+    <!--Xml及JSON视图解析器配置-->
+    <bean id="userListXml" class="org.springframework.web.servlet.view.xml.MarshallingView">
+        <property name="modelKey" value="userList"/>
+        <property name="marshaller" ref="xmlMarshaller"/>
+    </bean>
+    <bean id="userListJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+        <property name="modelKey" value="userList"/>
+    </bean>
+    <!--Xml文件或国际化资源文件定义视图-->
+    <bean class="org.springframework.web.servlet.view.XmlViewResolver">
+        <!--默认情况下XmlViewResolver在WEB-INF/views.xml中查找视图Bean的定义文件，在chapter17_views.xml文件中定义的Bean不能被Spring Web上下文的其他Bean引用
+        它是被XmlViewResolver独享的-->
+        <property name="location" value="classpath:/chapter17-views.xml"/>
+        <property name="order" value="15"/>
+    </bean>
 </beans>

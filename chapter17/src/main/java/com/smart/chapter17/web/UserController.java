@@ -418,4 +418,42 @@ public class UserController {
         modelMap.addAttribute("userList", userList);
         return "userListPdf";
     }
+
+    @RequestMapping(path = "/showUserListByXml")
+    public String showUserListInXml(ModelMap modelMap) {
+        Calendar calendar = new GregorianCalendar();
+        List<User> userList = new ArrayList<>();
+        User user1 = new User();
+        user1.setUserName("tom");
+        user1.setRealName("汤姆");
+        calendar.set(1980, Calendar.FEBRUARY, 1);
+        user1.setBirthday(calendar.getTime());
+        User user2 = new User();
+        user2.setUserName("john");
+        user2.setRealName("约翰");
+        user2.setBirthday(calendar.getTime());
+        userList.add(user1);
+        userList.add(user2);
+        modelMap.addAttribute("userList", userList);
+        return "userListXml";
+    }
+
+    @RequestMapping(path = "/showUserListByJson")
+    public String showUserListInJson(ModelMap modelMap) {
+        Calendar calendar = new GregorianCalendar();
+        List<User> userList = new ArrayList<>();
+        User user1 = new User();
+        user1.setUserName("tom");
+        user1.setRealName("汤姆");
+        calendar.set(1980, Calendar.FEBRUARY, 1);
+        user1.setBirthday(calendar.getTime());
+        User user2 = new User();
+        user2.setUserName("john");
+        user2.setRealName("约翰");
+        user2.setBirthday(calendar.getTime());
+        userList.add(user1);
+        userList.add(user2);
+        modelMap.addAttribute("userList", userList);
+        return "userListJson";
+    }
 }

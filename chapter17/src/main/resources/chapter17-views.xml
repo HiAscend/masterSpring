@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userListExcel_1" class="com.smart.chapter17.web.UserListExcelView"/>
+    <bean id="userListPdf1_1" class="com.smart.chapter17.web.UserListPdfView"/>
+    <!--Xml及JSON视图解析器配置-->
+    <bean id="userListXml_1" class="org.springframework.web.servlet.view.xml.MarshallingView">
+        <property name="modelKey" value="userList"/>
+        <property name="marshaller" ref="xmlMarshaller"/>
+    </bean>
+    <bean id="userListJson_1" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+        <property name="modelKey" value="userList"/>
+    </bean>
+</beans>

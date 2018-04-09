@@ -34,7 +34,7 @@ public class UserListExcelView extends AbstractXlsxView {
     protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
         // Excel文档名称必须编码为ISO-8859-1，否则会显示乱码，IE中会直接在浏览器中展示，而在chrome等浏览器中则会直接提示下载
         // 第二个参数设置为："attachment; filename=..." 会提示下载文件
-        response.setHeader("Content-Disposition", "inline; filename=" + new String("用户列表".getBytes(), Charset.forName("ISO-8859-1")));
+        response.setHeader("Content-Disposition", "inline; filename=" + new String("用户列表.xlsx".getBytes(), Charset.forName("ISO-8859-1")));
         List<User> userList = (List<User>) model.get("userList");
         Sheet sheet = workbook.createSheet("users");
         Row header = sheet.createRow(0);
