@@ -456,4 +456,81 @@ public class UserController {
         modelMap.addAttribute("userList", userList);
         return "userListJson";
     }
+
+    @RequestMapping(path = "/showUserListByXlsx1")
+    public String showUserListInExcel1(ModelMap modelMap) {
+        Calendar calendar = new GregorianCalendar();
+        List<User> userList = new ArrayList<>();
+        User user1 = new User();
+        user1.setUserName("tom");
+        user1.setRealName("汤姆");
+        calendar.set(1980, Calendar.FEBRUARY, 1);
+        user1.setBirthday(calendar.getTime());
+        User user2 = new User();
+        user2.setUserName("john");
+        user2.setRealName("约翰");
+        user2.setBirthday(calendar.getTime());
+        userList.add(user1);
+        userList.add(user2);
+        modelMap.addAttribute("userList", userList);
+        return "userListExcel_1";
+    }
+
+
+    @RequestMapping(path = "/showUserListByPdf1")
+    public String showUserListInPdf1(ModelMap modelMap) {
+        Calendar calendar = new GregorianCalendar();
+        List<User> userList = new ArrayList<>();
+        User user1 = new User();
+        user1.setUserName("tom");
+        user1.setRealName("汤姆");
+        calendar.set(1980, Calendar.FEBRUARY, 1);
+        user1.setBirthday(calendar.getTime());
+        User user2 = new User();
+        user2.setUserName("john");
+        user2.setRealName("约翰");
+        user2.setBirthday(calendar.getTime());
+        userList.add(user1);
+        userList.add(user2);
+        modelMap.addAttribute("userList", userList);
+        return "userListPdf_1";
+    }
+
+    @RequestMapping(path = "/showUserListByXml1")
+    public String showUserListInXml1(ModelMap modelMap) {
+        Calendar calendar = new GregorianCalendar();
+        List<User> userList = new ArrayList<>();
+        User user1 = new User();
+        user1.setUserName("tom");
+        user1.setRealName("汤姆");
+        calendar.set(1980, Calendar.FEBRUARY, 1);
+        user1.setBirthday(calendar.getTime());
+        User user2 = new User();
+        user2.setUserName("john");
+        user2.setRealName("约翰");
+        user2.setBirthday(calendar.getTime());
+        userList.add(user1);
+        userList.add(user2);
+        modelMap.addAttribute("userList", userList);
+        return "userListXml_1";
+    }
+
+    @RequestMapping(path = "/showUserListByJson1")
+    public String showUserListInJson1(ModelMap modelMap) {
+        Calendar calendar = new GregorianCalendar();
+        List<User> userList = new ArrayList<>();
+        User user1 = new User();
+        user1.setUserName("tom");
+        user1.setRealName("汤姆");
+        calendar.set(1980, Calendar.FEBRUARY, 1);
+        user1.setBirthday(calendar.getTime());
+        User user2 = new User();
+        user2.setUserName("john");
+        user2.setRealName("约翰");
+        user2.setBirthday(calendar.getTime());
+        userList.add(user1);
+        userList.add(user2);
+        modelMap.addAttribute("userList", userList);
+        return "userListJson_1";
+    }
 }

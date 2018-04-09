@@ -149,4 +149,8 @@
         <property name="location" value="classpath:/chapter17-views.xml"/>
         <property name="order" value="15"/>
     </bean>
+    <bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="order" value="20"/>
+        <property name="basename" value="/i18n/views"/>
+    </bean>
 </beans>

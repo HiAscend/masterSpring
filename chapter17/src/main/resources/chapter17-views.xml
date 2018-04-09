@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="userListExcel_1" class="com.smart.chapter17.web.UserListExcelView"/>
-    <bean id="userListPdf1_1" class="com.smart.chapter17.web.UserListPdfView"/>
+    <bean id="userListPdf_1" class="com.smart.chapter17.web.UserListPdfView"/>
     <!--Xml及JSON视图解析器配置-->
     <bean id="userListXml_1" class="org.springframework.web.servlet.view.xml.MarshallingView">
         <property name="modelKey" value="userList"/>
