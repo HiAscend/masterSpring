@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <context:component-scan base-package="com.smart.chapter17.web"/>
@@ -31,6 +32,7 @@
     </mvc:annotation-driven>
     <!--<mvc:default-servlet-handler/>-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="order" value="100"/>
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
@@ -151,6 +153,48 @@
     </bean>
     <bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
         <property name="order" value="20"/>
-        <property name="basename" value="/i18n/views"/>
+        <!--对应views_zh_CN.properties-->
+        <property name="basename" value="i18n/views"/>
     </bean>
+
+    <!--混合使用多种视图技术-->
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="favorPathExtension" value="false"/>
+        <property name="favorParameter" value="true"/>
+        <property name="parameterName" value="content"/>
+        <property name="defaultContentType" value="text/html"/>
+        <property name="mediaTypes">
+            <props>
+                <prop key="html">text/html</prop>
+                <prop key="xml">application/xml</prop>
+                <prop key="json">application/json</prop>
+            </props>
+        </property>
+    </bean>
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="0"/>
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" p:modelKey="userListC"/>
+                <bean class="org.springframework.web.servlet.view.xml.MarshallingView" p:modelKey="userListC" p:marshaller-ref="xmlMarshaller"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--本地化解析器-->
+    <bean id="cookieLocaleResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="clientLanguage"/>
+        <property name="cookieMaxAge" value="100000"/>
+        <property name="cookiePath" value="/"/>
+        <property name="defaultLocale" value="zh_CN"/>
+    </bean>
+    <!--SessionLocalResolver-->
+    <bean class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+    <!--LocaleChangeInterceptor-->
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
+
 </beans>
