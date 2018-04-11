@@ -22,6 +22,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
@@ -29,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.*;
@@ -84,6 +86,16 @@ public class UserController {
         mav.setViewName("user/showDetail");
         mav.addObject("user", userService.getUserById(userId));
         return mav;
+    }
+
+    @RequestMapping(value = "/success")
+    public String success() {
+        return "success";
+    }
+
+    @RequestMapping(value = "/fail")
+    public String fail() {
+        return "fail";
     }
 
     // 1、请求参数按名称匹配的方式绑定到方法入参中，方法返回的字符串代表逻辑视图名
@@ -536,4 +548,21 @@ public class UserController {
         return "userListMix";
     }
 
+    // 文件上传
+
+    @RequestMapping(path = "/uploadPage")
+    public String uploadPage() {
+        return "uploadPage";
+    }
+
+    @RequestMapping(path = "/uploadThumb")
+    public String uploadThumb(@RequestParam("username") String username, @RequestParam("file") MultipartFile file) throws IOException {
+        LOG.debug("username:{}", username);
+        if (!file.isEmpty()) {
+            file.transferTo(new File("/tmp/head/"+file.getOriginalFilename()));
+            return "redirect:success.html";
+        }else {
+            return "redirect:fail.html";
+        }
+    }
 }

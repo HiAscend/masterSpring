@@ -9,9 +9,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>操作成功</title>
+    <title>操作失败</title>
 </head>
 <body>
-操作成功！
+操作失败！
 </body>
 </html>
