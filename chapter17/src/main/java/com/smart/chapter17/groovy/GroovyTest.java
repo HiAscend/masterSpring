@@ -39,6 +39,7 @@ public class GroovyTest {
 
             Class groovyClass = loader.parseClass(new File("E:\\adeng\\maven\\masterSpring\\chapter17\\src\\main\\java\\com\\smart\\chapter17\\groovy\\HelloGroovy.groovy"));
             GroovyObject groovyObject = (GroovyObject) groovyClass.newInstance();
+
             Object result = groovyObject.invokeMethod("sayHello", "katherine");
             System.out.println("result:"+result.toString());
             loader.clearCache();

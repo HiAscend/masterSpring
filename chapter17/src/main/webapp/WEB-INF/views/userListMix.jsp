@@ -17,7 +17,7 @@
 %>
 <html>
 <head>
-    <title><fmt:message key="website.title"/>---userListC</title>
+    <title><fmt:message key="website.title"/>---userListMix</title>
 </head>
 <body>
 <fmt:message key="user.userList.title"/>
