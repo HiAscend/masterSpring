@@ -30,6 +30,7 @@
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
         </mvc:message-converters>-->
     </mvc:annotation-driven>
+
     <!--<mvc:default-servlet-handler/>-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="order" value="100"/>
@@ -205,5 +206,6 @@
         <property name="uploadTempDir" value="file:/tmp"/>
     </bean>
 
-
+    <!--静态资源-->
+    <mvc:default-servlet-handler/>
 </beans>

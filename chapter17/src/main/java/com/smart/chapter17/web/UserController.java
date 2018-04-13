@@ -565,4 +565,9 @@ public class UserController {
             return "redirect:fail.html";
         }
     }
+
+    @RequestMapping(path = "/testWebSocket")
+    public String hello() {
+        return "/hello.jsp";
+    }
 }
