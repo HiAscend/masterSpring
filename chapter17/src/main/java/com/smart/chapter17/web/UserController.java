@@ -21,6 +21,8 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -566,8 +568,31 @@ public class UserController {
         }
     }
 
-    @RequestMapping(path = "/testWebSocket")
-    public String hello() {
-        return "/hello.jsp";
+    @RequestMapping(path = "/throwException")
+    public String throwException() {
+        if (2>1) {
+            throw new RuntimeException("throwException");
+        }
+        return "success";
+    }
+
+
+    // 异常处理
+
+    @ExceptionHandler(RuntimeException.class)
+    public String handleException(RuntimeException re, HttpServletRequest request) {
+        return "forward:/error.jsp";
+    }
+
+
+    // RequestContextHolder
+
+    // 需要在web.xml中配置监听器
+
+    @RequestMapping(path = "/testRequestContextHolder")
+    public String testRequestContextHolder() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        LOG.debug("UserController.testRequestContextHolder:{}",request);
+        return "success";
     }
 }

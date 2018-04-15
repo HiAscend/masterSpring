@@ -14,7 +14,7 @@
     <!--5. context-param*-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:/applicationContext.xml;classpath:/chapter17-servlet.xml</param-value>
+        <param-value>classpath:/applicationContext.xml</param-value>
     </context-param>
     <!--6. filter*-->
 
@@ -23,6 +23,9 @@
     <!--8. listener*-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
     <!--9. servlet*-->
     <servlet>
@@ -40,20 +43,25 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <!--什么都不写表示使用context-param中的配置-->
-            <param-value></param-value>
+            <param-value>classpath:/chapter17-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
         <!-- springmvc的异步支持 -->
         <async-supported>true</async-supported>
     </servlet>
     <!--10.servlet-mapping*-->
-    <servlet-mapping>
+    <!--<servlet-mapping>
         <servlet-name>chapter17</servlet-name>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>chapter17</servlet-name>
         <url-pattern>/a/</url-pattern>
+    </servlet-mapping>-->
+    <!--下面的配置需要对静态资源进行处理,使用rest风格编程-->
+    <servlet-mapping>
+        <servlet-name>chapter17</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <!--11.session-config?-->
     <!--12.mime-mapping*-->
@@ -62,6 +70,10 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
     <!--14.error-page*-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.htm</location>
+    </error-page>
     <!--15.taglib*-->
     <!--16.resource-env-ref*-->
     <!--17.resource-ref*-->

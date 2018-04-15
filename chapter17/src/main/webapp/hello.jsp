@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <%--
   Created by IntelliJ IDEA.
   User: ascend
@@ -10,7 +11,7 @@
 <head>
     <title>WebSocket测试</title>
     <script>
-        const url = "ws://" + window.location.host + "<%=request.getContextPath()%>/hello";
+        const url = "ws://" + window.location.host + "<%=request.getContextPath()%>/a/hello";
         const socket = new WebSocket(url);
 
         socket.onopen = function () {
