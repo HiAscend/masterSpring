@@ -213,7 +213,7 @@
 
     <bean id="resourcePathExposer" class="com.smart.chapter17.web.ResourcePathExposer" init-method="init"/>
     <!--其中location若配置/WEB-INF/img/则会被spring MVC拦截，所以不见静态资源放置WEB-INF目录下，缓存时期，一年31536000，通过版本控制来解决版本发布问题-->
-    <mvc:resources mapping="#{resourcePathExposer.resourceRoot}/**" location="/, classpath:/META-INF/public-web-resources/" cache-period="0"/>
+    <mvc:resources mapping="#{resourcePathExposer.resourceRoot}/**" location="/resources/, classpath:/META-INF/public-web-resources/" cache-period="0"/>
     <!--拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>
