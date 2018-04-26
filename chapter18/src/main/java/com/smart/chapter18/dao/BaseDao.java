@@ -3,6 +3,7 @@ package com.smart.chapter18.dao;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.util.Assert;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -115,6 +116,38 @@ public class BaseDao<T> {
     public List find(String hql, Object... params) {
         return getHibernateTemplate().find(hql, params);
     }
+
+
+    /**
+     * 分页查询，使用hql
+     *
+     * @param hql      String
+     * @param pageNo   int页号,从1开始.
+     * @param pageSize int
+     * @param values   Object[]
+     * @return 分页数据
+     */
+    public Page pagedQuery(String hql, int pageNo, int pageSize, Object... values) {
+        Assert.hasText(hql, "hql is blank");
+        Assert.isTrue(pageNo >= 1, "pageNo should start from 1");
+        // Count查询
+        return null;
+    }
+
+    /**
+     * 去除hql的select 子句，未考虑union的情况,用于pagedQuery.
+     *
+     * @param hql String
+     * @return 去除select字句后的hql
+     * @see #pagedQuery(String, int, int, Object...)
+     */
+    private static String extractSelect(String hql) {
+        Assert.hasText(hql, "hql is blank");
+        int beginPos = hql.toLowerCase().indexOf("from");
+        Assert.isTrue(beginPos != -1, " hql : " + hql + " must has a keyword 'from'");
+        return hql.substring(beginPos);
+    }
+
 
     public HibernateTemplate getHibernateTemplate() {
         return hibernateTemplate;
