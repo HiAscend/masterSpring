@@ -487,8 +487,64 @@
 
     <build>
         <finalName>chapter18</finalName>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/java</directory>
+                <includes>
+                    <include>**/*.txt</include>
+                </includes>
+            </resource>
+        </resources>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
+                <!--maven resources plugin-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.2</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                        <resources>
+                            <resource>
+                                <directory>${basedir}/src/main/resources</directory>
+                            </resource>
+                            <resource>
+                                <directory>${basedir}/src/main/resources</directory>
+                                <includes>
+                                    <include>*.properties</include>
+                                </includes>
+                                <filtering>true</filtering>
+                            </resource>
+                            <resource>
+                                <directory>${basedir}/src/main/java</directory>
+                                <includes>
+                                    <include>**/*.properties</include>
+                                </includes>
+                            </resource>
+                            <resource>
+                                <directory>${basedir}/src/main/java</directory>
+                                <includes>
+                                    <include>**/*.txt</include>
+                                </includes>
+                            </resource>
+                            <resource>
+                                <directory>${basedir}/src/main/xml</directory>
+                                <targetPath>ext/xml</targetPath>
+                            </resource>
+                        </resources>
+                        <!--指定替换文件的原文件-->
+                        <!--<filters>
+                            <filter>${basedir}/src/main/resources/my-filter-values.properties</filter>
+                        </filters>-->
+                        <nonFilteredFileExtensions>
+                            <nonFilteredFileExtension>jar</nonFilteredFileExtension>
+                        </nonFilteredFileExtensions>
+                    </configuration>
+                </plugin>
+
+
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.0.0</version>
