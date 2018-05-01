@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * BaseDao
@@ -18,6 +20,8 @@ import java.util.List;
  * @date 2018/04/23 20:28
  */
 public class BaseDao<T> {
+    private static final Pattern REMOVE_PATTERN = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE);
+
     private Class<T> entityClass;
     private HibernateTemplate hibernateTemplate;
 
@@ -131,11 +135,12 @@ public class BaseDao<T> {
         Assert.hasText(hql, "hql is blank");
         Assert.isTrue(pageNo >= 1, "pageNo should start from 1");
         // Count查询
+        String countQueryString = " select count(*) "+extractSelect(hql);
         return null;
     }
 
     /**
-     * 去除hql的select 子句，未考虑union的情况,用于pagedQuery.
+     * 截取hql的select 子句，未考虑union的情况,用于pagedQuery.
      *
      * @param hql String
      * @return 去除select字句后的hql
@@ -146,6 +151,15 @@ public class BaseDao<T> {
         int beginPos = hql.toLowerCase().indexOf("from");
         Assert.isTrue(beginPos != -1, " hql : " + hql + " must has a keyword 'from'");
         return hql.substring(beginPos);
+    }
+
+    private static String removeOrders(String hql) {
+        Assert.hasText(hql, "hql is blank");
+        Matcher m = REMOVE_PATTERN.matcher(hql);
+        StringBuffer sb = new StringBuffer();
+        while (m.find()) {
+            m.appendReplacement(sb, "");
+        }
     }
 
 
