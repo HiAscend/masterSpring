@@ -138,6 +138,12 @@ public class Page implements Serializable {
      * @return int
      */
     public static int getStartOfPage(int pageNo, int pageSize) {
+        if (pageNo < 1) {
+            pageNo = 1;
+        }
+        if (pageSize < 1) {
+            pageSize = 0;
+        }
         return (pageNo - 1) * pageSize;
     }
 

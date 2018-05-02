@@ -1,5 +1,6 @@
 package com.smart.chapter18.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -135,8 +136,46 @@ public class BaseDao<T> {
         Assert.hasText(hql, "hql is blank");
         Assert.isTrue(pageNo >= 1, "pageNo should start from 1");
         // Count查询
-        String countQueryString = " select count(*) "+extractSelect(hql);
-        return null;
+        String countQueryString = " select count(*) " + extractSelect(removeOrders(hql));
+        List<?> countList = getHibernateTemplate().find(countQueryString, values);
+        long totalCount = Long.parseLong(countList.get(0).toString());
+
+        if (totalCount < 1) {
+            return new Page();
+        }
+        // 实际查询返回分页对象
+        int startIndex = Page.getStartOfPage(pageNo, pageSize);
+        Query query = createQuery(hql, values);
+        List list = query.setFirstResult(startIndex).setMaxResults(pageSize).list();
+
+        return new Page(startIndex, totalCount, pageSize, list);
+    }
+
+    /**
+     * 创建Query对象. 对于需要first,max,fetchsize,cache,cacheRegion等诸多设置的函数,可以在返回Query后自行设置.
+     * 留意可以连续设置,如下：
+     * <pre>
+     *     dao.getQuery(hql).setMaxResult(100).setCacheable(true).list();
+     * </pre>
+     * 调用方式如下：
+     * <pre>
+     *     dao.createQuery(hql)
+     *     dao.createQuery(hql,arg0);
+     *     dao.createQuery(hql,arg0,arg1);
+     *     dao.createQuery(hql,new Object[arg0,arg1,arg2])
+     * </pre>
+     *
+     * @param hql    String
+     * @param values 可变参数
+     * @return Query
+     */
+    public Query createQuery(String hql, Object... values) {
+        Assert.hasText(hql, "hql is blank");
+        Query query = getSession().createQuery(hql);
+        for (int i = 0; i < values.length; i++) {
+            query.setParameter(i, values[i]);
+        }
+        return query;
     }
 
     /**
@@ -160,6 +199,8 @@ public class BaseDao<T> {
         while (m.find()) {
             m.appendReplacement(sb, "");
         }
+        m.appendTail(sb);
+        return sb.toString();
     }
 
 
