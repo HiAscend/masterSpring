@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--配置扫描com.smart.chapter18.dao包下所有标注@Repository的DAO组件-->
+    <context:component-scan base-package="com.smart.chapter18.dao"/>
+
+    <!--引入JDBC连接的属性文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!--定义一个数据源-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.password}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--定义Hibernate的Session工厂-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--扫描基于JPA注解的PO类目录-->
+        <property name="packagesToScan">
+            <list>
+                <value>com.smart.chapter18.domain</value>
+            </list>
+        </property>
+        <!--指定Hibernate的属性信息-->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL57InnoDBDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--定义HibernateTemplate-->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+</beans>
