@@ -30,6 +30,9 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL57InnoDBDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <!--采用EHCache缓存实现方案-->
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.use_query_cache">false</prop>
             </props>
         </property>
     </bean>
