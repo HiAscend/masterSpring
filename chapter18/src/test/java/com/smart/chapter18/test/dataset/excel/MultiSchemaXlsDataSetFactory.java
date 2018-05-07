@@ -23,20 +23,27 @@ public class MultiSchemaXlsDataSetFactory implements DataSetFactory {
         this.defaultSchemaName = s;
     }
 
+    /**
+     * 创建数据集
+     * @param dataSetFiles File...
+     * @return MultiSchemaDataSet
+     */
     @Override
-    public MultiSchemaDataSet createDataSet(File... files) {
+    public MultiSchemaDataSet createDataSet(File... dataSetFiles) {
         try {
-            MultiSchemaXlsDataSetReader xlsDataSetReader = new MultiSchemaXlsDataSetReader(
-                defaultSchemaName);
+            MultiSchemaXlsDataSetReader xlsDataSetReader = new MultiSchemaXlsDataSetReader(defaultSchemaName);
             return xlsDataSetReader.readDataSetXls(dataSetFiles);
         } catch (Exception e) {
-            throw new UnitilsException("创建数据集失败: "
-                + Arrays.toString(dataSetFiles), e);
+            throw new UnitilsException("创建数据集失败: " + Arrays.toString(dataSetFiles), e);
         }
     }
 
+    /**
+     * 获取数据集文件的扩展名
+     * @return String
+     */
     @Override
     public String getDataSetFileExtension() {
-        return null;
+        return "xls";
     }
 }
