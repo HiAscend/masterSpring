@@ -496,6 +496,9 @@
         <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
         <resources>
             <resource>
+                <directory>${basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
                 <directory>${basedir}/src/main/java</directory>
                 <includes>
                     <include>**/*.txt</include>
