@@ -24,7 +24,7 @@ public class XlsDataSetBeanFactory {
     /**
      * 从DbUnit的EXCEL数据集文件创建多个bean
      *
-     * @param testClass Class
+     * @param testClass Class 测试类
      * @param file      String
      * @param tableName String
      * @param <T>       T
@@ -46,7 +46,7 @@ public class XlsDataSetBeanFactory {
     /**
      * 从DbUnit的Excel数据集文件创建Bean
      *
-     * @param testClass Class
+     * @param testClass Class 测试类
      * @param file      String
      * @param tableName String
      * @param clazz     Class
