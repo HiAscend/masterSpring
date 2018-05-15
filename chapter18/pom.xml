@@ -26,7 +26,7 @@
         <core.cglib.version>3.2.5</core.cglib.version>
         <core.asm.version>6.0</core.asm.version>
         <core.aspectj.version>1.8.12</core.aspectj.version>
-        <core.hibernate.version>4.2.0.Final</core.hibernate.version>
+        <core.hibernate.version>5.1.13.Final</core.hibernate.version>
         <core.mybatis.version>3.4.5</core.mybatis.version>
         <core.mybatis-spring.version>1.3.1</core.mybatis-spring.version>
         <core.quartz.version>2.2.3</core.quartz.version>
@@ -157,6 +157,10 @@
                     <artifactId>hibernate-jpa-2.1-api</artifactId>
                     <groupId>org.hibernate.javax.persistence</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>jboss-logging</artifactId>
+                    <groupId>org.jboss.logging</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -187,6 +191,10 @@
                 <exclusion>
                     <artifactId>hibernate-core</artifactId>
                     <groupId>org.hibernate</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>hibernate-jpa-2.0-api</artifactId>
+                    <groupId>org.hibernate.javax.persistence</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
