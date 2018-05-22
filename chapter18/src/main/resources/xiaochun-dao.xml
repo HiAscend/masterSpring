@@ -18,33 +18,34 @@
     </bean>
 
     <!--定义Hibernate的Session工厂-->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!--扫描基于JPA注解的PO类目录-->
-        <property name="packagesToScan">
+        <property name="pa">
             <list>
                 <value>com.smart.chapter18.domain</value>
             </list>
         </property>
+
         <!--指定Hibernate的属性信息-->
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL57InnoDBDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <!--采用EHCache缓存实现方案-->
-                <prop key="hibernate.cache.provider_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.EhCacheRegionFactory</prop>
                 <prop key="hibernate.cache.use_query_cache">false</prop>
             </props>
         </property>
     </bean>
 
     <!--定义HibernateTemplate-->
-    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <!--transactionManager-->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 

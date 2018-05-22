@@ -3,6 +3,7 @@ package com.smart.chapter18.dao;
 import com.smart.chapter18.domain.Board;
 import com.smart.chapter18.test.dataset.util.XlsDataSetBeanFactory;
 import org.testng.annotations.Test;
+import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.dbunit.annotation.ExpectedDataSet;
 import org.unitils.spring.annotation.SpringBean;
 
@@ -23,6 +24,7 @@ public class BoardDaoTest extends BaseDaoTest {
      * 创建一个新的论坛版块,并更新
      */
     @Test
+    @DataSet(value = "XiaoChun.SaveBoards.xls")//准备数据
     @ExpectedDataSet("XiaoChun.SaveBoards.xls")
     public void addBoard() throws Exception {
         // 通过XlsDataSetBeanFactory数据集绑定工厂创建测试实体
