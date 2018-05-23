@@ -25,7 +25,7 @@ public class BoardDaoTest extends BaseDaoTest {
      */
     @Test
     @DataSet(value = "XiaoChun.SaveBoards.xls")//准备数据
-    @ExpectedDataSet("XiaoChun.SaveBoards.xls")
+    @ExpectedDataSet("XiaoChun.ExpectedBoards.xls")
     public void addBoard() throws Exception {
         // 通过XlsDataSetBeanFactory数据集绑定工厂创建测试实体
         List<Board> boards = XlsDataSetBeanFactory.createBeans(BoardDaoTest.class, "XiaoChun.SaveBoards.xls", "t_board", Board.class);
