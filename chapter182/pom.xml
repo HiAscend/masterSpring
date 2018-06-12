@@ -10,15 +10,14 @@
     <packaging>war</packaging>
 
     <name>chapter182 Maven Webapp</name>
-    <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
     <properties>
+        <file.encoding>UTF-8</file.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
 
-        <file.encoding>UTF-8</file.encoding>
         <spring.version>4.2.2.RELEASE</spring.version>
         <slf4j.version>1.7.5</slf4j.version>
         <aspectj.version>1.8.1</aspectj.version>
@@ -26,8 +25,6 @@
         <mysql.version>5.1.29</mysql.version>
         <servlet.version>3.0-alpha-1</servlet.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
-        <jetty.version>8.1.8.v20121106</jetty.version>
-        <aspectjweaver.version>1.6.8</aspectjweaver.version>
         <hibernate.version>4.2.0.Final</hibernate.version>
         <mockito.version>1.10.19</mockito.version>
         <unitils.version>3.4.2</unitils.version>

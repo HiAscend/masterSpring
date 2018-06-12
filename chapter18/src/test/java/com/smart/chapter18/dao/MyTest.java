@@ -15,5 +15,10 @@ public class MyTest {
         System.out.println("true = " + true);
         Class.forName("com.smart.chapter18.dao.MyTest");
         Class.forName("org.hibernate.cfg.AnnotationConfiguration");
+
+
     }
+
+
+
 }
