@@ -3,8 +3,10 @@ package com.smart.chapter18.dao;
 import com.smart.chapter18.domain.Board;
 import com.smart.chapter18.test.dataset.util.XlsDataSetBeanFactory;
 import org.testng.annotations.Test;
+import org.unitils.UnitilsTestNG;
 import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.dbunit.annotation.ExpectedDataSet;
+import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBean;
 
 import java.util.List;
@@ -15,7 +17,8 @@ import java.util.List;
  * @author ascend
  * @date 2018/5/10 16:07.
  */
-public class BoardDaoTest extends BaseDaoTest {
+@SpringApplicationContext({"xiaochun-dao.xml"})
+public class BoardDaoTest extends UnitilsTestNG {
 
     @SpringBean("boardDao")
     private BoardDao boardDao;
@@ -27,6 +30,7 @@ public class BoardDaoTest extends BaseDaoTest {
     @DataSet(value = "XiaoChun.SaveBoards.xls")//准备数据
     @ExpectedDataSet("XiaoChun.ExpectedBoards.xls")
     public void addBoard() throws Exception {
+        System.out.println("==================================");
         // 通过XlsDataSetBeanFactory数据集绑定工厂创建测试实体
         List<Board> boards = XlsDataSetBeanFactory.createBeans(BoardDaoTest.class, "XiaoChun.SaveBoards.xls", "t_board", Board.class);
         for (Board board : boards) {

@@ -59,7 +59,7 @@ public class MultiSchemaXlsDataSetReader {
                     }
                     ITable table = dataSet.getTable(each);
                     if (!tableMap.containsKey(tableName)) {
-                        tableMap.put(schema, new ArrayList<>());
+                        tableMap.put(schema, new ArrayList<ITable>());
                     }
                     tableMap.get(schema).add(new XlsTable(table, tableName));
                 }
