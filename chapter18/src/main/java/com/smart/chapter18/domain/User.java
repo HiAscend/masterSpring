@@ -135,4 +135,14 @@ public class User extends BaseDomain {
     public void setManBoardSet(Set<Board> manBoardSet) {
         this.manBoardSet = manBoardSet;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
