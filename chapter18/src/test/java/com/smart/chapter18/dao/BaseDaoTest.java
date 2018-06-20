@@ -10,5 +10,6 @@ import org.unitils.spring.annotation.SpringApplicationContext;
  * @date 2018/5/10 16:02.
  */
 @SpringApplicationContext(value = {"xiaochun-dao.xml"})
-public class BaseDaoTest extends UnitilsTestNG {
+public abstract class BaseDaoTest extends UnitilsTestNG {
+
 }
