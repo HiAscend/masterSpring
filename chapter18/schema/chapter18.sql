@@ -172,6 +172,6 @@ CREATE TABLE `t_user` (
 # Dumping data for table t_user
 #
 
-INSERT INTO `t_user` VALUES (1,'tom','1234',2,0,203,NULL,NULL);
+INSERT INTO `t_user` VALUES (1,'tom','1234',2,0,203,'2011-06-06 00:00:00','127.0.0.1');
 INSERT INTO `t_user` VALUES (2,'john','1234',2,1,10,NULL,NULL);
 INSERT INTO `t_user` VALUES (3,'ggg','123123',1,0,110,NULL,NULL);

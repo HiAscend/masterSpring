@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * LoginLog
@@ -61,5 +62,30 @@ public class LoginLog extends BaseDomain {
 
     public void setLoginTime(Date loginTime) {
         this.loginTime = loginTime;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + loginLogId;
+        result = 31 * result + (user == null ? 0 : user.hashCode());
+        result = 31 * result + (ip == null ? 0 : ip.hashCode());
+        result = 31 * result + (loginTime == null ? 0 : loginTime.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof LoginLog)) {
+            return false;
+        }
+        LoginLog loginLog = (LoginLog) obj;
+        return loginLog.loginLogId == this.loginLogId &&
+            Objects.equals(loginLog.user, this.user) &&
+            Objects.equals(loginLog.ip, this.ip) &&
+            Objects.equals(loginLog.loginTime, this.loginTime);
     }
 }

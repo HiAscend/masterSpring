@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -138,11 +139,21 @@ public class User extends BaseDomain {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int result = 17;
+        result = 31 * result + userId;
+        result = 31 * result + (userName == null ? 0 : userName.hashCode());
+        return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof User)) {
+            return false;
+        }
+        User user = (User) obj;
+        return user.userId == this.userId && Objects.equals(user.userName, this.userName);
     }
 }

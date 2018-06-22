@@ -42,16 +42,6 @@ public class BaseDao<T> {
      * @param id 主键
      * @return 实例对象，如果记录不存在，返回null
      */
-    public T load(Serializable id) {
-        return getHibernateTemplate().load(entityClass, id);
-    }
-
-    /**
-     * 根据ID加载PO实例
-     *
-     * @param id 主键
-     * @return 实例对象，如果记录不存在，返回null
-     */
     public T get(Serializable id) {
         return getHibernateTemplate().load(entityClass, id);
     }
@@ -152,7 +142,7 @@ public class BaseDao<T> {
     }
 
     /**
-     * 创建Query对象. 对于需要first,max,fetchsize,cache,cacheRegion等诸多设置的函数,可以在返回Query后自行设置.
+     * 创建Query对象. 对于需要first,max,fetchSize,cache,cacheRegion等诸多设置的函数,可以在返回Query后自行设置.
      * 留意可以连续设置,如下：
      * <pre>
      *     dao.getQuery(hql).setMaxResult(100).setCacheable(true).list();

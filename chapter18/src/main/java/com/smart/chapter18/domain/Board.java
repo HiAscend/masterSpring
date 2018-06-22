@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Set;
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Table(name = "t_board")
-public class Board extends BaseDomain{
+public class Board extends BaseDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
@@ -72,5 +73,25 @@ public class Board extends BaseDomain{
 
     public void setUserSet(Set<User> userSet) {
         this.userSet = userSet;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + boardId;
+        result = 31 * result + (boardName == null ? 0 : boardName.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Board)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        Board board = (Board) obj;
+        return board.boardId == this.boardId && Objects.equals(board.boardName, this.boardName);
     }
 }

@@ -2,6 +2,7 @@ package com.smart.chapter18.dao;
 
 import com.smart.chapter18.domain.Board;
 import com.smart.chapter18.test.dataset.util.XlsDataSetBeanFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.dbunit.annotation.ExpectedDataSet;
@@ -35,8 +36,18 @@ public class BoardDaoTest extends BaseDaoTest {
     }
 
     @Test
+    @DataSet(value = {"XiaoChun.Boards.xls"})
+    @ExpectedDataSet(value = "XiaoChun.ExpectedBoards.xls")
     public void removeBoard() {
         Board board = boardDao.get(7);
-        System.out.println("board = " + board);
+        boardDao.remove(board);
+    }
+
+    @Test
+    @DataSet(value = {"XiaoChun.Boards.xls"})
+    public void testGetBoard() {
+        Board board = boardDao.get(1);
+        Assert.assertNotNull(board);
+        Assert.assertEquals(board.getBoardName(), "SpringMVC");
     }
 }

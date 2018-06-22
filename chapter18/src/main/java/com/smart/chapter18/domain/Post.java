@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Post
@@ -98,5 +99,32 @@ public class Post extends BaseDomain {
 
     public void setTopic(Topic topic) {
         this.topic = topic;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + postId;
+        result = 31 * result + (postTitle == null ? 0 : postTitle.hashCode());
+        result = 31 * result + boardId;
+        result = 31 * result + (user == null ? 0 : user.hashCode());
+        result = 31 * result + (topic == null ? 0 : topic.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Post)) {
+            return false;
+        }
+        Post post = (Post) obj;
+        return post.postId == this.postId &&
+            Objects.equals(post.postTitle, this.postTitle) &&
+            post.boardId == this.boardId &&
+            Objects.equals(post.user, this.user) &&
+            Objects.equals(post.topic, this.topic);
     }
 }

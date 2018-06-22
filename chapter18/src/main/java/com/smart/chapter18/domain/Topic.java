@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Topic
@@ -15,7 +16,7 @@ import java.util.Date;
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Table(name = "t_topic")
-public class Topic extends BaseDomain{
+public class Topic extends BaseDomain {
     /**
      * 精华主题帖子
      */
@@ -136,5 +137,32 @@ public class Topic extends BaseDomain{
 
     public void setDigest(int digest) {
         this.digest = digest;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + topicId;
+        result = 31 * result + (topicTitle == null ? 0 : topicTitle.hashCode());
+        result = 31 * result + (user == null ? 0 : user.hashCode());
+        result = 31 * result + boardId;
+        result = 31 * result + (mainPost == null ? 0 : mainPost.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Topic)) {
+            return false;
+        }
+        Topic topic = (Topic) obj;
+        return topic.topicId == this.topicId &&
+            Objects.equals(topic.topicTitle, this.topicTitle) &&
+            Objects.equals(topic.user, this.user) &&
+            topic.boardId == this.boardId &&
+            Objects.equals(topic.mainPost, this.mainPost);
     }
 }
