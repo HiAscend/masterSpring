@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -50,7 +51,7 @@ public class User extends BaseDomain {
     private String lastIp;
 
     @Column(name = "last_visit")
-    private String lastVisit;
+    private Date lastVisit;
 
     @Column(name = "password")
     private String password;
@@ -97,11 +98,11 @@ public class User extends BaseDomain {
         this.lastIp = lastIp;
     }
 
-    public String getLastVisit() {
+    public Date getLastVisit() {
         return lastVisit;
     }
 
-    public void setLastVisit(String lastVisit) {
+    public void setLastVisit(Date lastVisit) {
         this.lastVisit = lastVisit;
     }
 

@@ -37,4 +37,11 @@ public class UserDaoTest extends BaseDaoTest {
         User u  = XlsDataSetBeanFactory.createBean(UserDaoTest.class,"XiaoChun.SaveUser.xls", "t_user", User.class);
         userDao.update(u);  //执行用户信息更新操作
     }
+
+
+    @Test
+    public void testUpdateUser()throws Exception  {
+        User user = XlsDataSetBeanFactory.createBean(UserDaoTest.class, "XiaoChun.SaveUser.xls", "t_user", User.class);
+        System.out.println("user = " + user);
+    }
 }

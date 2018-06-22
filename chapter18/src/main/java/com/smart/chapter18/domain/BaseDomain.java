@@ -1,6 +1,6 @@
 package com.smart.chapter18.domain;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import com.smart.chapter18.util.MyReflectionToStringBuilder;
 
 import java.io.Serializable;
 
@@ -15,6 +15,6 @@ public class BaseDomain implements Serializable{
 
     @Override
     public String toString() {
-        return ReflectionToStringBuilder.toString(this);
+        return MyReflectionToStringBuilder.toString(this);
     }
 }
