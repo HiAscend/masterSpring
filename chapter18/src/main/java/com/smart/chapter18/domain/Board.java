@@ -18,6 +18,7 @@ import java.util.Set;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Table(name = "t_board")
 public class Board extends BaseDomain {
+    private static final long serialVersionUID = 3104365761431500573L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")

@@ -67,7 +67,7 @@ public class ForumService {
         postDao.save(mainPost);
 
         User user = topic.getUser();
-        user.setCredit(user.getCredit()+ 10);
+        user.setCredit(user.getCredit() + 10);
         userDao.update(user);
     }
 
