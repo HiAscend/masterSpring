@@ -13,21 +13,19 @@
     <description>小春论坛</description>
     <!--4. distributable?-->
     <!--5. context-param*-->
-    <!--<context-param>
+    <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/applicationContext.xml</param-value>
-    </context-param>-->
+    </context-param>
     <!--6. filter*-->
 
     <!--7. filter-mapping*-->
 
     <!--8. listener*-->
-    <!--<listener>
+    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <listener>
-        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-    </listener>-->
+
     <!--9. servlet*-->
     <!--<servlet>
         &lt;!&ndash;SpringMVC 默认会加载<servlet-Name>-servlet.xml
