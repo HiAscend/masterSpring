@@ -1,6 +1,4 @@
-package com.smart.chapter19.domain;
-
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+package com.smart.chapter19.oxm.xstream.annotation;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,12 +6,11 @@ import java.util.Date;
 /**
  * LoginLog
  *
- * @author zziaa
- * @date 2018/07/09 23:10
+ * @author ascend
+ * @date 2018/7/10 15:13.
  */
 public class LoginLog implements Serializable {
-    private static final long serialVersionUID = -7152673639413132099L;
-
+    private static final long serialVersionUID = 5790015514259042515L;
     private int loginLogId;
     private int userId;
     private String ip;
@@ -51,8 +48,5 @@ public class LoginLog implements Serializable {
         this.loginDate = loginDate;
     }
 
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
+
 }

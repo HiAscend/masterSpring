@@ -19,6 +19,7 @@
 
         <!--utils-->
         <utils.xstream.version>1.4.10</utils.xstream.version>
+        <utils.commons-lang3.version>3.7</utils.commons-lang3.version>
 
         <!--test-->
         <test.testng.version>6.14.3</test.testng.version>
@@ -29,7 +30,12 @@
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
-            <version>1.4.10</version>
+            <version>${utils.xstream.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${utils.commons-lang3.version}</version>
         </dependency>
         <!--utils end-->
         <!--test start-->

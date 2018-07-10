@@ -1,21 +1,18 @@
-package com.smart.chapter19.domain;
-
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+package com.smart.chapter19.oxm.xstream.annotation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User
  *
- * @author zziaa
- * @date 2018/07/09 23:07
+ * @author ascend
+ * @date 2018/7/10 15:09.
  */
-public class User implements Serializable {
-    private static final long serialVersionUID = -1226290163305211069L;
+public class User implements Serializable{
+    private static final long serialVersionUID = 4510493188020293616L;
 
     private int userId;
     private String userName;
@@ -24,7 +21,6 @@ public class User implements Serializable {
     private String lastIp;
     private Date lastVisit;
     private List<LoginLog> logs;
-    private Map datas;
 
     public int getUserId() {
         return userId;
@@ -82,14 +78,6 @@ public class User implements Serializable {
         this.logs = logs;
     }
 
-    public Map getDatas() {
-        return datas;
-    }
-
-    public void setDatas(Map datas) {
-        this.datas = datas;
-    }
-
     // add log
 
     public void addLoginLog(LoginLog log) {
@@ -98,10 +86,4 @@ public class User implements Serializable {
         }
         logs.add(log);
     }
-
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
-
 }
