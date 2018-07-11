@@ -1,5 +1,8 @@
 package com.smart.chapter19.util;
 
+/**
+ * @author ascend
+ */
 public class ResourceUtils {
     /**
      * 获取当前类所在的物理路径
