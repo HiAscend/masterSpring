@@ -19,6 +19,7 @@
 
         <!--utils-->
         <utils.xstream.version>1.4.10</utils.xstream.version>
+        <utils.jettison.version>1.2</utils.jettison.version>
         <utils.commons-lang3.version>3.7</utils.commons-lang3.version>
 
         <!--test-->
@@ -33,9 +34,20 @@
             <version>${utils.xstream.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.codehaus.jettison</groupId>
+            <artifactId>jettison</artifactId>
+            <version>${utils.jettison.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${utils.commons-lang3.version}</version>
+        </dependency>
+        <!--jaxb-->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.3.0.1</version>
         </dependency>
         <!--utils end-->
         <!--test start-->
@@ -43,7 +55,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${test.testng.version}</version>
-            <scope>test</scope>
+            <!--<scope>test</scope>-->
         </dependency>
         <!--test end-->
     </dependencies>
