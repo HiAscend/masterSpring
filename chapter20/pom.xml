@@ -6,7 +6,7 @@
     <groupId>com.smart</groupId>
     <artifactId>chapter20</artifactId>
     <version>1.0</version>
-    <name>chapter20</name>
+    <name>chapter20  Maven Webapp</name>
 
     <dependencies>
         <!-- spring 依赖-->

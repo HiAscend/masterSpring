@@ -10,7 +10,8 @@ import static org.mockito.Mockito.*;
 
 public class MockAnnotationTest {
 
-    @Mock User mockUser;
+    @Mock
+    private User mockUser;
     
     @Before 
     public void initMocks() {
